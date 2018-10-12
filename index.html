@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=11' />
+    <title>Docbox</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href='css/base.css' rel='stylesheet' />
+    <link href='css/style.css' rel='stylesheet' />
+    <link href='css/railscasts.css' rel='stylesheet' />
+  </head>
+  <body>
+    <!--START--><div id='app'><div class="container unlimiter" data-reactroot="" data-reactid="1" data-react-checksum="198085616"><div class="fixed-top fixed-right space-left16" data-reactid="2"><div class="fill-light col6 pin-right" data-reactid="3"></div></div><div class="space-top5 scroll-styled overflow-auto pad1 width16 sidebar fixed-left fill-dark dark" data-reactid="4"><div class="pad0x small" data-reactid="5"><div class="small pad0x quiet space-top1" data-reactid="6">Introduction</div><a href="#cumulus-api" class="line-height15 pad0x pad00y quiet block " data-reactid="7">Cumulus API</a><div class="small pad0x quiet space-top1" data-reactid="8">Versioning</div><a href="#versioning-1" class="line-height15 pad0x pad00y quiet block " data-reactid="9">Versioning</a><div class="small pad0x quiet space-top1" data-reactid="10">Authentication</div><a href="#token" class="line-height15 pad0x pad00y quiet block " data-reactid="11">Token</a><a href="#authorization-header" class="line-height15 pad0x pad00y quiet block " data-reactid="12">Authorization header</a><div class="small pad0x quiet space-top1" data-reactid="13">Providers</div><a href="#list-providers" class="line-height15 pad0x pad00y quiet block " data-reactid="14">List providers</a><a href="#retrieve-provider" class="line-height15 pad0x pad00y quiet block " data-reactid="15">Retrieve provider</a><a href="#create-provider" class="line-height15 pad0x pad00y quiet block " data-reactid="16">Create provider</a><a href="#update-provider" class="line-height15 pad0x pad00y quiet block " data-reactid="17">Update provider</a><a href="#restart-provider" class="line-height15 pad0x pad00y quiet block " data-reactid="18">Restart provider</a><a href="#stop-provider" class="line-height15 pad0x pad00y quiet block " data-reactid="19">Stop provider</a><a href="#delete-provider" class="line-height15 pad0x pad00y quiet block " data-reactid="20">Delete provider</a><div class="small pad0x quiet space-top1" data-reactid="21">Collections</div><a href="#list-collections" class="line-height15 pad0x pad00y quiet block " data-reactid="22">List collections</a><a href="#retrieve-collection" class="line-height15 pad0x pad00y quiet block " data-reactid="23">Retrieve collection</a><a href="#create-collection" class="line-height15 pad0x pad00y quiet block " data-reactid="24">Create collection</a><a href="#update-collection" class="line-height15 pad0x pad00y quiet block " data-reactid="25">Update collection</a><a href="#delete-collection" class="line-height15 pad0x pad00y quiet block " data-reactid="26">Delete collection</a><div class="small pad0x quiet space-top1" data-reactid="27">Granules</div><a href="#list-granules" class="line-height15 pad0x pad00y quiet block " data-reactid="28">List granules</a><a href="#retrieve-granule" class="line-height15 pad0x pad00y quiet block " data-reactid="29">Retrieve granule</a><a href="#reingest-granule" class="line-height15 pad0x pad00y quiet block " data-reactid="30">Reingest granule</a><a href="#apply-workflow-to-granule" class="line-height15 pad0x pad00y quiet block " data-reactid="31">Apply workflow to granule</a><a href="#move-a-granule" class="line-height15 pad0x pad00y quiet block " data-reactid="32">Move a granule</a><a href="#remove-granule-from-cmr" class="line-height15 pad0x pad00y quiet block " data-reactid="33">Remove granule from CMR</a><a href="#delete-granule" class="line-height15 pad0x pad00y quiet block " data-reactid="34">Delete granule</a><div class="small pad0x quiet space-top1" data-reactid="35">PDRs</div><a href="#list-pdrs" class="line-height15 pad0x pad00y quiet block " data-reactid="36">List PDRs</a><a href="#retrieve-pdr" class="line-height15 pad0x pad00y quiet block " data-reactid="37">Retrieve PDR</a><a href="#delete-pdr" class="line-height15 pad0x pad00y quiet block " data-reactid="38">Delete PDR</a><div class="small pad0x quiet space-top1" data-reactid="39">Rules</div><a href="#list-rules" class="line-height15 pad0x pad00y quiet block " data-reactid="40">List rules</a><a href="#retrieve-rule" class="line-height15 pad0x pad00y quiet block " data-reactid="41">Retrieve rule</a><a href="#create-rule" class="line-height15 pad0x pad00y quiet block " data-reactid="42">Create rule</a><a href="#update-rule" class="line-height15 pad0x pad00y quiet block " data-reactid="43">Update rule</a><a href="#delete-rule" class="line-height15 pad0x pad00y quiet block " data-reactid="44">Delete rule</a><div class="small pad0x quiet space-top1" data-reactid="45">Stats</div><a href="#summary" class="line-height15 pad0x pad00y quiet block " data-reactid="46">Summary</a><a href="#histogram" class="line-height15 pad0x pad00y quiet block " data-reactid="47">Histogram</a><a href="#count" class="line-height15 pad0x pad00y quiet block " data-reactid="48">Count</a><a href="#average" class="line-height15 pad0x pad00y quiet block " data-reactid="49">Average</a><div class="small pad0x quiet space-top1" data-reactid="50">Logs</div><a href="#list-logs" class="line-height15 pad0x pad00y quiet block " data-reactid="51">List logs</a><a href="#retrieve-logs" class="line-height15 pad0x pad00y quiet block " data-reactid="52">Retrieve Logs</a><div class="small pad0x quiet space-top1" data-reactid="53">Executions</div><a href="#list-executions" class="line-height15 pad0x pad00y quiet block " data-reactid="54">List executions</a><a href="#retrieve-execution" class="line-height15 pad0x pad00y quiet block " data-reactid="55">Retrieve Execution</a><a href="#retrieve-execution-status" class="line-height15 pad0x pad00y quiet block " data-reactid="56">Retrieve Execution Status</a><div class="small pad0x quiet space-top1" data-reactid="57">Workflows</div><a href="#list-workflows" class="line-height15 pad0x pad00y quiet block " data-reactid="58">List workflows</a><a href="#retrieve-workflow" class="line-height15 pad0x pad00y quiet block " data-reactid="59">Retrieve workflow</a><div class="small pad0x quiet space-top1" data-reactid="60">Schemas</div><a href="#retrieve-schema" class="line-height15 pad0x pad00y quiet block " data-reactid="61">Retrieve schema</a><div class="small pad0x quiet space-top1" data-reactid="62">Reconciliation Reports</div><a href="#list-reconciliation-reports" class="line-height15 pad0x pad00y quiet block " data-reactid="63">List reconciliation reports</a><a href="#retrieve-reconciliation-report" class="line-height15 pad0x pad00y quiet block " data-reactid="64">Retrieve reconciliation report</a><a href="#create-reconciliation-report" class="line-height15 pad0x pad00y quiet block " data-reactid="65">Create reconciliation report</a><a href="#delete-reconciliation-report" class="line-height15 pad0x pad00y quiet block " data-reactid="66">Delete reconciliation report</a></div></div><div class="space-left16" data-reactid="67"><div class="" data-reactid="68"><div class="clearfix" data-reactid="69"><div data-title="Cumulus API" class="keyline-top section contain clearfix " data-reactid="70"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="71"><h2 id="cumulus-api">Cumulus API</h2>
+<p>The Cumulus API allows developers to interact with the <a href="https://github.com/cumulus-nasa/cumulus">Cumulus Framework</a>, such as monitoring status or creating, editing, and deleting records. This is the same API that powers the <a href="https://github.com/cumulus-nasa/cumulus-dashboard">Cumulus dashboard</a>.</p>
+<p>By utilizing this API, a developer can integrate with the Cumulus framework in any language or environment; although interacting with Cumulus through the Cumulus dashboard may be appropriate for many end users, for some use cases it's best to have the flexibility of a web-accessible API.</p>
+<p>The API accepts and responds with JSON payloads at various HTTPS endpoints.</p>
+<p>In order to use these endpoints, you must include authentication information in your HTTPS request; authentication is explained in the following section.</p>
+<p>The following table lists the <a href="https://en.wikipedia.org/wiki/Query_string">query string</a> parameters that can be used with most of the Cumulus API endpoints. <code>{fieldName}</code> is a stand-in for any of the fields in the record, and for nested objects dot notation can be used; for example, valid <code>fieldName</code>s include: <code>pdrName</code>, <code>status</code>, and <code>recipe.processStep.description</code>.</p>
+<table>
+<thead>
+<tr>
+<th>query string parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>limit={number}</code></td>
+<td>number of records to be returned by the API call; default is <code>1</code>, maximum is <code>100</code></td>
+</tr>
+<tr>
+<td><code>page={number}</code></td>
+<td>page number, 1-indexed; default is <code>1</code></td>
+</tr>
+<tr>
+<td><code>sort_by={fieldName}</code></td>
+<td>which field to sort by; default is <code>timestamp</code></td>
+</tr>
+<tr>
+<td><code>order={asc|desc}</code></td>
+<td>whether to sort in <code>asc</code> or <code>desc</code> order</td>
+</tr>
+<tr>
+<td><code>prefix={value}</code></td>
+<td><code>startsWith</code> search of the <code>granuleId</code>, <code>status</code>, <code>pdrName</code>, <code>collectionName</code>, and <code>userName</code> fields</td>
+</tr>
+<tr>
+<td><code>fields={fieldName1, fieldName2}</code></td>
+<td>which fields to return, separated by a comma</td>
+</tr>
+<tr>
+<td><code>{fieldName}={value}</code></td>
+<td>exact value match for the given field</td>
+</tr>
+<tr>
+<td><code>{fieldName}__from={number}</code></td>
+<td>for numeric fields, field value must be greater than the given number</td>
+</tr>
+<tr>
+<td><code>{fieldName}__to={number}</code></td>
+<td>for numeric fields, field value must be less than the given number</td>
+</tr>
+<tr>
+<td><code>{fieldName}__not={value}</code></td>
+<td>field does not match the given value</td>
+</tr>
+<tr>
+<td><code>{fieldName}__in={value1, value2}</code></td>
+<td>field matches <em>one of</em> the values in the comma-separated list</td>
+</tr>
+<tr>
+<td><code>{fieldName}__exists={true|false}</code></td>
+<td>field exists or doesn't exist in the record</td>
+</tr>
+<tr>
+<td><code>q="fieldName:(1 TO 2) AND fieldName2: (3 To 4)"</code></td>
+<td>arbitrary Apache Lucene query syntax, <em>not needed for most uses of the API</em>; if the <code>q</code> parameter is used, all other query parameters will be ignored, besides <code>limit</code>, <code>page</code>, and <code>fields</code></td>
+</tr>
+</tbody>
+</table>
+</div></div><div data-title="Versioning" class="keyline-top section contain clearfix " data-reactid="72"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="73"><h2 id="versioning-1">Versioning</h2>
+<p>The Cumulus API is versioned and the current version is v1. Retrieve the latest API version from Cumulus.</p>
+<p>To use any version, include the version number in the path before the query endpoint. <code>{API_URL}/{version}/{query}</code></p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="74"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/version</div>
+    </div>
+<h4 id="example-request">Example Request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/version</pre>
+<h4 id="example-response">Example Response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"response_version"</span>: <span class="hljs-string">"v1"</span>,
+    <span class="hljs-attr">"api_version"</span>: <span class="hljs-string">"1.1.1"</span>
+}</pre>
+</div></div><div data-title="Token" class="keyline-top section contain clearfix " data-reactid="75"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="76"><h2 id="token">Token</h2>
+<p>Returns a bearer token using oAuth with <a href="https://urs.earthdata.nasa.gov">Earthdata Login</a> service.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="77"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/token</div>
+    </div>
+</div></div><div data-title="Query Parameters" class="keyline-top section contain clearfix " data-reactid="78"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="79"><h3 id="query-parameters">Query Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>query string parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>state={string}</code></td>
+<td>The URI to redirect to after if oAuth was successful</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="80"><h4 id="example-request-1">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/token</pre>
+<h4 id="example-response-1">Example response</h4>
+<pre class='hljs'>{<span class="hljs-attr">"token"</span>:<span class="hljs-string">"22374aa80353a781dabcbaadba8a7fc0fa51f3b435f1578256604f1b4d451686"</span>}</pre>
+</div></div><div data-title="Authorization header" class="keyline-top section contain clearfix " data-reactid="81"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="82"><h2 id="authorization-header">Authorization header</h2>
+<p>When a request is made to the Cumulus API, it must contain a bearer token generated by the API.</p>
+<p>The token is generated after the user login with <a href="https://urs.earthdata.nasa.gov">Earthdata Login</a> service.</p>
+<p>The token is included in requests using the <code>Authorization</code> header.</p>
+<p>If no token is provided, the Cumulus API server will respond with an error, requesting credentials. If an incorrect token is provided, the server will respond with a separate error noting this.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="83"><h4 id="authentication-example">Authentication example</h4>
+<pre class='hljs'><span class="hljs-meta">#! /bin/sh
+</span>
+ORIGIN=$(dirname <span class="hljs-variable">$CUMULUS_BASEURL</span>)
+LOGIN_URL=<span class="hljs-string">"<span class="hljs-variable">$CUMULUS_BASEURL</span>/token"</span>
+
+<span class="hljs-comment"># create a base64 hash of your login credentials</span>
+AUTH=$(<span class="hljs-built_in">printf</span> <span class="hljs-string">"<span class="hljs-variable">$EARTHDATA_USERNAME</span>:<span class="hljs-variable">$EARTHDATA_PASSWORD</span>"</span> | base64)
+
+<span class="hljs-comment"># Request the Earthdata url with client id and redirect uri to use with Cumulus</span>
+AUTHORIZE_URL=$(curl -s -i <span class="hljs-variable">${LOGIN_URL}</span> | grep location | sed -e <span class="hljs-string">"s/^location: //"</span>);
+
+<span class="hljs-comment"># Request an authorization grant code</span>
+TOKEN_URL=$(curl -s -i -X POST \
+  -F <span class="hljs-string">"credentials=<span class="hljs-variable">${AUTH}</span>"</span> \
+  -H <span class="hljs-string">"Origin: <span class="hljs-variable">${ORIGIN}</span>"</span> \
+  <span class="hljs-variable">${AUTHORIZE_URL%$'\r'}</span> | grep Location | sed -e <span class="hljs-string">"s/^Location: //"</span>)
+
+<span class="hljs-comment"># Request the token through the CUMULUS API url that's returned from Earthdata</span>
+<span class="hljs-comment"># Response is a JSON object of the form { token: String }</span>
+<span class="hljs-comment"># This uses the cli tool jq to parse the JSON and get the token string</span>
+<span class="hljs-comment"># More info on jq: https://stedolan.github.io/jq/</span>
+TOKEN=$(curl -s <span class="hljs-variable">${TOKEN_URL%$'\r'}</span> | jq -r <span class="hljs-string">'.token'</span>)
+
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$TOKEN</span></pre>
+</div></div><div data-title="List providers" class="keyline-top section contain clearfix " data-reactid="84"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="85"><h2 id="list-providers">List providers</h2>
+<p>List providers in the Cumulus system.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="86"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/providers</div>
+    </div>
+<h4 id="example-request-2">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/providers --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-2">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"meta"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+        <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"lpdaac-cumulus"</span>,
+        <span class="hljs-attr">"table"</span>: <span class="hljs-string">"provider"</span>,
+        <span class="hljs-attr">"limit"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"page"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"count"</span>: <span class="hljs-number">2</span>
+    },
+    <span class="hljs-attr">"results"</span>: [
+        {
+            <span class="hljs-attr">"id"</span>: <span class="hljs-string">"LP_TS2_DataPool"</span>,
+            <span class="hljs-attr">"globalConnectionLimit"</span>: <span class="hljs-number">10</span>,
+            <span class="hljs-attr">"protocol"</span>: <span class="hljs-string">"http"</span>,
+            <span class="hljs-attr">"host"</span>: <span class="hljs-string">"https://e4ftl01.cr.usgs.gov:40521/"</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1508861082226</span>
+        }
+    ]
+}</pre>
+</div></div><div data-title="Retrieve provider" class="keyline-top section contain clearfix " data-reactid="87"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="88"><h2 id="retrieve-provider">Retrieve provider</h2>
+<p>Retrieve a single provider.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="89"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/providers/<span class="strong">{id}</span></div>
+    </div>
+<h4 id="example-request-3">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/providers/LPDAAC_HTTP_MODIS --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-3">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1508861081785</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"LP_TS2_DataPool"</span>,
+    <span class="hljs-attr">"host"</span>: <span class="hljs-string">"https://e4ftl01.cr.usgs.gov:40521/"</span>,
+    <span class="hljs-attr">"globalConnectionLimit"</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1508861081785</span>,
+    <span class="hljs-attr">"protocol"</span>: <span class="hljs-string">"http"</span>
+}</pre>
+</div></div><div data-title="Create provider" class="keyline-top section contain clearfix " data-reactid="90"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="91"><h2 id="create-provider">Create provider</h2>
+<p>Create a provider.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="92"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/v1/providers</div>
+    </div>
+<h4 id="example-request-4">Example request</h4>
+<pre class='hljs'>$ curl --request POST https://example.com/v1/providers --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span> --data <span class="hljs-string">'{
+    "changedBy": "Cumulus Dashboard",
+    "createdAt": 1491941727851,
+    "host": "https://www.example.gov",
+    "id": "MY_DAAC_SATELLITE",
+    "path": "/satellite/pdrs",
+    "protocol": "http",
+    "providerName": "MY_DAAC",
+    "updatedAt": 1491941727851
+}'</span></pre>
+<h4 id="example-response-4">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Record saved"</span>,
+    <span class="hljs-attr">"record"</span>: {
+        <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1491941727851</span>,
+        <span class="hljs-attr">"host"</span>: <span class="hljs-string">"https://www.example.gov"</span>,
+        <span class="hljs-attr">"id"</span>: <span class="hljs-string">"MY_DAAC_SATELLITE"</span>,
+        <span class="hljs-attr">"protocol"</span>: <span class="hljs-string">"http"</span>,
+        <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1513956150733</span>,
+        <span class="hljs-attr">"globalConnectionLimit"</span>: <span class="hljs-number">10</span>,
+        <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513956151186</span>
+    }
+}</pre>
+</div></div><div data-title="Update provider" class="keyline-top section contain clearfix " data-reactid="93"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="94"><h2 id="update-provider">Update provider</h2>
+<p>Update values for a provider. Can accept the whole provider object, or just a subset of fields, the ones that are being updated.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="95"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/v1/providers</div>
+    </div>
+<h4 id="example-request-5">Example request</h4>
+<pre class='hljs'>$ curl --request PUT https://example.com/v1/providers/MY_DAAC_SATELLITE --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span> --data <span class="hljs-string">'{
+    "host": "https://www.example.co.uk"
+}'</span></pre>
+<h4 id="example-response-5">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1491941727851</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"MY_DAAC_SATELLITE"</span>,
+    <span class="hljs-attr">"host"</span>: <span class="hljs-string">"https://www.example.co.uk"</span>,
+    <span class="hljs-attr">"globalConnectionLimit"</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1513956150733</span>,
+    <span class="hljs-attr">"protocol"</span>: <span class="hljs-string">"http"</span>,
+    <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513956555713</span>
+}</pre>
+</div></div><div data-title="Restart provider" class="keyline-top section contain clearfix " data-reactid="96"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="97"><h2 id="restart-provider">Restart provider</h2>
+<p>Restart a provider. If the provider's <code>status</code> value had been <code>stopped</code> or <code>failed</code>, it will leave that status and return to searching for new PDRs to process.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="98"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/v1/providers/<span class="strong">{id}</span></div>
+    </div>
+<h4 id="example-request-6">Example request</h4>
+<pre class='hljs'>$ curl --request PUT https://example.com/v1/providers/MY_DAAC_SATELLITE --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span> --data <span class="hljs-string">'{"action": "restart"}'</span></pre>
+<h4 id="example-response-6">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1491941727851</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"MY_DAAC_SATELLITE"</span>,
+    <span class="hljs-attr">"host"</span>: <span class="hljs-string">"https://www.example.co.uk"</span>,
+    <span class="hljs-attr">"globalConnectionLimit"</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1513956555642</span>,
+    <span class="hljs-attr">"protocol"</span>: <span class="hljs-string">"http"</span>,
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"restart"</span>,
+    <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513956779541</span>
+}</pre>
+</div></div><div data-title="Stop provider" class="keyline-top section contain clearfix " data-reactid="99"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="100"><h2 id="stop-provider">Stop provider</h2>
+<p>Set a provider's <code>status</code> to <code>stopped</code>. This halts all processing of granules associated with the provider.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="101"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/v1/providers/<span class="strong">{id}</span></div>
+    </div>
+<h4 id="example-request-7">Example request</h4>
+<pre class='hljs'>$ curl --request PUT https://example.com/v1/providers/MY_DAAC_SATELLITE --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span> --data <span class="hljs-string">'{"action": "stop"}'</span></pre>
+<h4 id="example-response-7">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"stop"</span>,
+    <span class="hljs-attr">"host"</span>: <span class="hljs-string">"https://www.example.co.uk"</span>,
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1513956779503</span>,
+    <span class="hljs-attr">"protocol"</span>: <span class="hljs-string">"http"</span>,
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1491941727851</span>,
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"MY_DAAC_SATELLITE"</span>,
+    <span class="hljs-attr">"globalConnectionLimit"</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513956816160</span>
+}</pre>
+</div></div><div data-title="Delete provider" class="keyline-top section contain clearfix " data-reactid="102"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="103"><h2 id="delete-provider">Delete provider</h2>
+<p>Delete a provider from Cumulus. The related PDRs and granules remain in the Cumulus and CMR systems.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="104"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>DELETE</div>
+      <div class='pad0 code small endpoint-url'>/v1/providers/<span class="strong">{id}</span></div>
+    </div>
+<h4 id="example-request-8">Example request</h4>
+<pre class='hljs'>$ curl --request DELETE https://example.com/v1/providers/MY_DAAC_SATELLITE --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-8">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Record deleted"</span>
+}</pre>
+</div></div><div data-title="List collections" class="keyline-top section contain clearfix " data-reactid="105"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="106"><h2 id="list-collections">List collections</h2>
+<p>List collections in the Cumulus system.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="107"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/collections</div>
+    </div>
+<h4 id="example-request-9">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/collections --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-9">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"meta"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+        <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"lpdaac-cumulus"</span>,
+        <span class="hljs-attr">"table"</span>: <span class="hljs-string">"collection"</span>,
+        <span class="hljs-attr">"limit"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"page"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"count"</span>: <span class="hljs-number">3</span>
+    },
+    <span class="hljs-attr">"results"</span>: [
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1"</span>,
+            <span class="hljs-attr">"version"</span>: <span class="hljs-string">"006"</span>,
+            <span class="hljs-attr">"dataType"</span>: <span class="hljs-string">"MOD11A1"</span>,
+            <span class="hljs-attr">"process"</span>: <span class="hljs-string">"modis"</span>,
+            <span class="hljs-attr">"provider_path"</span>: <span class="hljs-string">"/"</span>,
+            <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}$"</span>,
+            <span class="hljs-attr">"granuleIdExtraction"</span>: <span class="hljs-string">"(MOD11A1\\..*)\\.hdf"</span>,
+            <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104.hdf"</span>,
+            <span class="hljs-attr">"files"</span>: [
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"protected"</span>,
+                    <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}\\.hdf$"</span>,
+                    <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104.hdf"</span>
+                },
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"private"</span>,
+                    <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^BROWSE\\.MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}\\.hdf$"</span>,
+                    <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"BROWSE.MOD11A1.A2017025.h21v00.006.2017034065104.hdf"</span>
+                },
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"private"</span>,
+                    <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}\\.hdf\\.met$"</span>,
+                    <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104.hdf.met"</span>
+                },
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"protected"</span>,
+                    <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}\\.cmr\\.xml$"</span>,
+                    <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104.cmr.xml"</span>
+                },
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"public"</span>,
+                    <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}_2\\.jpg$"</span>,
+                    <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104_2.jpg"</span>
+                },
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"public"</span>,
+                    <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}_1\\.jpg$"</span>,
+                    <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104_1.jpg"</span>
+                }
+            ],
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513020427284</span>,
+            <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1510761441174</span>,
+            <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1513020427162</span>,
+            <span class="hljs-attr">"edpa"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"some_other_field"</span>: <span class="hljs-string">"field"</span>,
+            <span class="hljs-attr">"duplicateHandling"</span>: <span class="hljs-string">"skip"</span>,
+            <span class="hljs-attr">"stats"</span>: {
+                <span class="hljs-attr">"running"</span>: <span class="hljs-number">0</span>,
+                <span class="hljs-attr">"completed"</span>: <span class="hljs-number">6</span>,
+                <span class="hljs-attr">"failed"</span>: <span class="hljs-number">1</span>,
+                <span class="hljs-attr">"total"</span>: <span class="hljs-number">7</span>
+            }
+        }
+    ]
+}</pre>
+</div></div><div data-title="Retrieve collection" class="keyline-top section contain clearfix " data-reactid="108"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="109"><h2 id="retrieve-collection">Retrieve collection</h2>
+<p>Retrieve a single collection.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="110"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/collections/<span class="strong">{name}</span>/<span class="strong">{version}</span></div>
+    </div>
+<h4 id="example-request-10">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/collections/MOD11A1/006 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-10">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"process"</span>: <span class="hljs-string">"modis"</span>,
+    <span class="hljs-attr">"granuleIdExtraction"</span>: <span class="hljs-string">"(MOD11A1\\..*)\\.hdf"</span>,
+    <span class="hljs-attr">"version"</span>: <span class="hljs-string">"006"</span>,
+    <span class="hljs-attr">"dataType"</span>: <span class="hljs-string">"MOD11A1"</span>,
+    <span class="hljs-attr">"some_other_field"</span>: <span class="hljs-string">"field"</span>,
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1510761441174</span>,
+    <span class="hljs-attr">"edpa"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1"</span>,
+    <span class="hljs-attr">"duplicateHandling"</span>: <span class="hljs-string">"skip"</span>,
+    <span class="hljs-attr">"provider_path"</span>: <span class="hljs-string">"/"</span>,
+    <span class="hljs-attr">"files"</span>: [
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"protected"</span>,
+            <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104.hdf"</span>,
+            <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}\\.hdf$"</span>
+        },
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"private"</span>,
+            <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"BROWSE.MOD11A1.A2017025.h21v00.006.2017034065104.hdf"</span>,
+            <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^BROWSE\\.MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}\\.hdf$"</span>
+        },
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"private"</span>,
+            <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104.hdf.met"</span>,
+            <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}\\.hdf\\.met$"</span>
+        },
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"protected"</span>,
+            <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104.cmr.xml"</span>,
+            <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}\\.cmr\\.xml$"</span>
+        },
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"public"</span>,
+            <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104_2.jpg"</span>,
+            <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}_2\\.jpg$"</span>
+        },
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"public"</span>,
+            <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104_1.jpg"</span>,
+            <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}_1\\.jpg$"</span>
+        }
+    ],
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1513020427162</span>,
+    <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"^MOD11A1\\.A[\\d]{7}\\.[\\S]{6}\\.006.[\\d]{13}$"</span>,
+    <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MOD11A1.A2017025.h21v00.006.2017034065104.hdf"</span>,
+    <span class="hljs-attr">"stats"</span>: {
+        <span class="hljs-attr">"running"</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">"completed"</span>: <span class="hljs-number">6</span>,
+        <span class="hljs-attr">"failed"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"total"</span>: <span class="hljs-number">7</span>
+    }
+}</pre>
+</div></div><div data-title="Create collection" class="keyline-top section contain clearfix " data-reactid="111"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="112"><h2 id="create-collection">Create collection</h2>
+<p>Create a collection.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="113"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/v1/collections</div>
+    </div>
+<h4 id="example-request-11">Example request</h4>
+<pre class='hljs'>$ curl --request POST https://example.com/v1/collections --header <span class="hljs-string">'Authorization: Bearer ReplaceWithToken'</span> --data <span class="hljs-string">'{
+    "changedBy": "Jane Smith",
+    "cmrProvider": "MY_DAAC",
+    "name": "MY_COLLECTION",
+    "version": "1",
+    "createdAt": 1491946535919,
+    "granuleId": "^MY_COLLECTION\\.A[\\d]{7}\\.[\\S]{6}\\.1.[\\d]{13}$",
+    "granuleIdExtraction": "(MY_COLLECTION\\..*)\\.hdf",
+    "sampleFileName": "MY_COLLECTION.A2017025.h21v00.1.2017034065104.hdf",
+     "files": [
+        {
+            "bucket": "protected",
+            "sampleFileName": "MY_COLLECTION.A2017025.h21v00.1.2017034065104.hdf",
+            "regex": "^MY_COLLECTION\\.A[\\d]{7}\\.[\\S]{6}\\.1.[\\d]{13}\\.hdf$"
+        }],
+    "providers": [
+        "MY_DAAC_SATELLITE"
+    ],
+    "recipe": {
+        "order": [
+            "archive"
+        ],
+        "processStep": {
+            "config": {
+                "image": "asterProcessing",
+                "inputFiles": [
+                    "foobar"
+                ],
+                "outputFiles": [
+                    "foobar"
+                ]
+            }
+        }
+    },
+    "updatedAt": 1491946535919
+}'</span></pre>
+<h4 id="example-response-11">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Record saved"</span>,
+    <span class="hljs-attr">"record"</span>: {
+        <span class="hljs-attr">"changedBy"</span>: <span class="hljs-string">"Jane Smith"</span>,
+        <span class="hljs-attr">"cmrProvider"</span>: <span class="hljs-string">"MY_DAAC"</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MY_COLLECTION"</span>,
+        <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1"</span>,
+        <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1491946535919</span>,
+        <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"^MY_COLLECTION\\.A[\\d]{7}\\.[\\S]{6}\\.1.[\\d]{13}$"</span>,
+        <span class="hljs-attr">"granuleIdExtraction"</span>: <span class="hljs-string">"(MY_COLLECTION\\..*)\\.hdf"</span>,
+        <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MY_COLLECTION.A2017025.h21v00.1.2017034065104.hdf"</span>,
+        <span class="hljs-attr">"files"</span>: [
+            {
+                <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"protected"</span>,
+                <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MY_COLLECTION.A2017025.h21v00.1.2017034065104.hdf"</span>,
+                <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MY_COLLECTION\\.A[\\d]{7}\\.[\\S]{6}\\.1.[\\d]{13}\\.hdf$"</span>
+            }
+        ],
+        <span class="hljs-attr">"providers"</span>: [
+            <span class="hljs-string">"MY_DAAC_SATELLITE"</span>
+        ],
+        <span class="hljs-attr">"recipe"</span>: {
+            <span class="hljs-attr">"order"</span>: [
+                <span class="hljs-string">"archive"</span>
+            ],
+            <span class="hljs-attr">"processStep"</span>: {
+                <span class="hljs-attr">"config"</span>: {
+                    <span class="hljs-attr">"image"</span>: <span class="hljs-string">"asterProcessing"</span>,
+                    <span class="hljs-attr">"inputFiles"</span>: [
+                        <span class="hljs-string">"foobar"</span>
+                    ],
+                    <span class="hljs-attr">"outputFiles"</span>: [
+                        <span class="hljs-string">"foobar"</span>
+                    ]
+                }
+            }
+        },
+        <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1513960696308</span>,
+        <span class="hljs-attr">"provider_path"</span>: <span class="hljs-string">"/"</span>,
+        <span class="hljs-attr">"duplicateHandling"</span>: <span class="hljs-string">"replace"</span>,
+        <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513960696736</span>
+    }
+}</pre>
+</div></div><div data-title="Update collection" class="keyline-top section contain clearfix " data-reactid="114"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="115"><h2 id="update-collection">Update collection</h2>
+<p>Update values for a collection. Can accept the whole collection object, or just a subset of fields, the ones that are being updated.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="116"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/v1/collections/<span class="strong">{name}</span>/<span class="strong">{version}</span></div>
+    </div>
+<h4 id="example-request-12">Example request</h4>
+<pre class='hljs'>$ curl --request PUT https://example.com/v1/collections/MY_COLLECTION/1 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span> --data <span class="hljs-string">'{
+	"name": "MY_COLLECTION",
+	"version": "1",
+    "providers": ["ANOTHER_PROVIDER"]
+}'</span></pre>
+<h4 id="example-response-12">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"granuleIdExtraction"</span>: <span class="hljs-string">"(MY_COLLECTION\\..*)\\.hdf"</span>,
+    <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1"</span>,
+    <span class="hljs-attr">"recipe"</span>: {
+        <span class="hljs-attr">"processStep"</span>: {
+            <span class="hljs-attr">"config"</span>: {
+                <span class="hljs-attr">"inputFiles"</span>: [
+                    <span class="hljs-string">"foobar"</span>
+                ],
+                <span class="hljs-attr">"image"</span>: <span class="hljs-string">"asterProcessing"</span>,
+                <span class="hljs-attr">"outputFiles"</span>: [
+                    <span class="hljs-string">"foobar"</span>
+                ]
+            }
+        },
+        <span class="hljs-attr">"order"</span>: [
+            <span class="hljs-string">"archive"</span>
+        ]
+    },
+    <span class="hljs-attr">"cmrProvider"</span>: <span class="hljs-string">"MY_DAAC"</span>,
+    <span class="hljs-attr">"providers"</span>: [
+        <span class="hljs-string">"ANOTHER_PROVIDER"</span>
+    ],
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1491946535919</span>,
+    <span class="hljs-attr">"changedBy"</span>: <span class="hljs-string">"Jane Smith"</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MY_COLLECTION"</span>,
+    <span class="hljs-attr">"duplicateHandling"</span>: <span class="hljs-string">"replace"</span>,
+    <span class="hljs-attr">"provider_path"</span>: <span class="hljs-string">"/"</span>,
+    <span class="hljs-attr">"files"</span>: [
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"protected"</span>,
+            <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MY_COLLECTION.A2017025.h21v00.1.2017034065104.hdf"</span>,
+            <span class="hljs-attr">"regex"</span>: <span class="hljs-string">"^MY_COLLECTION\\.A[\\d]{7}\\.[\\S]{6}\\.1.[\\d]{13}\\.hdf$"</span>
+        }
+    ],
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1514304825894</span>,
+    <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"^MY_COLLECTION\\.A[\\d]{7}\\.[\\S]{6}\\.1.[\\d]{13}$"</span>,
+    <span class="hljs-attr">"sampleFileName"</span>: <span class="hljs-string">"MY_COLLECTION.A2017025.h21v00.1.2017034065104.hdf"</span>,
+    <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1514304826284</span>
+}</pre>
+</div></div><div data-title="Delete collection" class="keyline-top section contain clearfix " data-reactid="117"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="118"><h2 id="delete-collection">Delete collection</h2>
+<p>Delete a collection from Cumulus, but not from CMR. All related granules in Cumulus must have already been deleted from Cumulus.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="119"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>DELETE</div>
+      <div class='pad0 code small endpoint-url'>/v1/collections/<span class="strong">{name}</span>/<span class="strong">{version}</span></div>
+    </div>
+<h4 id="example-request-13">Example request</h4>
+<pre class='hljs'>$ curl --request DELETE https://example.com/v1/collections/MY_COLLECTION/1 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-13">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Record deleted"</span>
+}</pre>
+</div></div><div data-title="List granules" class="keyline-top section contain clearfix " data-reactid="120"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="121"><h2 id="list-granules">List granules</h2>
+<p>List granules in the Cumulus system.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="122"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/granules</div>
+    </div>
+<h4 id="example-request-14">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/granules --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-14">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"meta"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+        <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"lpdaac-cumulus"</span>,
+        <span class="hljs-attr">"table"</span>: <span class="hljs-string">"granule"</span>,
+        <span class="hljs-attr">"limit"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"page"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"count"</span>: <span class="hljs-number">8</span>
+    },
+    <span class="hljs-attr">"results"</span>: [
+        {
+            <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755"</span>,
+            <span class="hljs-attr">"pdrName"</span>: <span class="hljs-string">"7970bff5-128a-489f-b43c-de4ad7834ce5.PDR"</span>,
+            <span class="hljs-attr">"collectionId"</span>: <span class="hljs-string">"MOD11A1___006"</span>,
+            <span class="hljs-attr">"status"</span>: <span class="hljs-string">"completed"</span>,
+            <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"LP_TS2_DataPool"</span>,
+            <span class="hljs-attr">"execution"</span>: <span class="hljs-string">"https://console.aws.amazon.com/states/home?region=us-east-1#/executions/details/arn:aws:states:us-east-1:433612427488:execution:LpdaacCumulusIngestGranuleStateMachine-N3CLGBXRPAT9:7f071dae1a93c9892272b7fd5"</span>,
+            <span class="hljs-attr">"files"</span>: [
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-protected"</span>,
+                    <span class="hljs-attr">"path"</span>: <span class="hljs-string">"/TEST_B/Cumulus/MODIS/DATA"</span>,
+                    <span class="hljs-attr">"checksumValue"</span>: <span class="hljs-number">964704694</span>,
+                    <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-protected/MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>,
+                    <span class="hljs-attr">"fileSize"</span>: <span class="hljs-number">1447347</span>,
+                    <span class="hljs-attr">"checksumType"</span>: <span class="hljs-string">"CKSUM"</span>,
+                    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>,
+                    <span class="hljs-attr">"url_path"</span>: <span class="hljs-string">""</span>
+                },
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-private"</span>,
+                    <span class="hljs-attr">"path"</span>: <span class="hljs-string">"/TEST_B/Cumulus/MODIS/DATA"</span>,
+                    <span class="hljs-attr">"checksumValue"</span>: <span class="hljs-number">121318124</span>,
+                    <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-private/MOD11A1.A2017137.h20v17.006.2017138085755.hdf.met"</span>,
+                    <span class="hljs-attr">"fileSize"</span>: <span class="hljs-number">22559</span>,
+                    <span class="hljs-attr">"checksumType"</span>: <span class="hljs-string">"CKSUM"</span>,
+                    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755.hdf.met"</span>,
+                    <span class="hljs-attr">"url_path"</span>: <span class="hljs-string">""</span>
+                },
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-private"</span>,
+                    <span class="hljs-attr">"path"</span>: <span class="hljs-string">"/TEST_B/Cumulus/MODIS/DATA"</span>,
+                    <span class="hljs-attr">"checksumValue"</span>: <span class="hljs-number">2188150664</span>,
+                    <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-private/BROWSE.MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>,
+                    <span class="hljs-attr">"fileSize"</span>: <span class="hljs-number">18118</span>,
+                    <span class="hljs-attr">"checksumType"</span>: <span class="hljs-string">"CKSUM"</span>,
+                    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"BROWSE.MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>,
+                    <span class="hljs-attr">"url_path"</span>: <span class="hljs-string">""</span>
+                },
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-protected"</span>,
+                    <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-protected/MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>,
+                    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>
+                },
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-public"</span>,
+                    <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-public/MOD11A1.A2017137.h20v17.006.2017138085755_2.jpg"</span>,
+                    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755_2.jpg"</span>
+                },
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-protected"</span>,
+                    <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755"</span>,
+                    <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-protected/MOD11A1.A2017137.h20v17.006.2017138085755.cmr.xml"</span>,
+                    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755.cmr.xml"</span>
+                },
+                {
+                    <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-public"</span>,
+                    <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-public/MOD11A1.A2017137.h20v17.006.2017138085755_1.jpg"</span>,
+                    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755_1.jpg"</span>
+                }
+            ],
+            <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>,
+            <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1513020455831</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513020462156</span>,
+            <span class="hljs-attr">"published"</span>: <span class="hljs-string">"https://cmr.uat.earthdata.nasa.gov/search/granules.json?concept_id=G1220753758-CUMULUS"</span>,
+            <span class="hljs-attr">"duration"</span>: <span class="hljs-number">6.325</span>,
+            <span class="hljs-attr">"cmrLink"</span>: <span class="hljs-string">"https://cmr.uat.earthdata.nasa.gov/search/granules.json?concept_id=G1220753758-CUMULUS"</span>
+        }
+    ]
+}</pre>
+</div></div><div data-title="Retrieve granule" class="keyline-top section contain clearfix " data-reactid="123"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="124"><h2 id="retrieve-granule">Retrieve granule</h2>
+<p>Retrieve a single granule.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="125"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/granules/<span class="strong">{granuleId}</span></div>
+    </div>
+<h4 id="example-request-15">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/granules/MOD11A1.A2017137.h20v17.006.2017138085755 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-15">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755"</span>,
+    <span class="hljs-attr">"pdrName"</span>: <span class="hljs-string">"7970bff5-128a-489f-b43c-de4ad7834ce5.PDR"</span>,
+    <span class="hljs-attr">"collectionId"</span>: <span class="hljs-string">"MOD11A1___006"</span>,
+    <span class="hljs-attr">"status"</span>: <span class="hljs-string">"completed"</span>,
+    <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"LP_TS2_DataPool"</span>,
+    <span class="hljs-attr">"execution"</span>: <span class="hljs-string">"https://console.aws.amazon.com/states/home?region=us-east-1#/executions/details/arn:aws:states:us-east-1:433612427488:execution:LpdaacCumulusIngestGranuleStateMachine-N3CLGBXRPAT9:7f071dae1a93c9892272b7fd5"</span>,
+    <span class="hljs-attr">"files"</span>: [
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-protected"</span>,
+            <span class="hljs-attr">"path"</span>: <span class="hljs-string">"/TEST_B/Cumulus/MODIS/DATA"</span>,
+            <span class="hljs-attr">"checksumValue"</span>: <span class="hljs-number">964704694</span>,
+            <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-protected/MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>,
+            <span class="hljs-attr">"fileSize"</span>: <span class="hljs-number">1447347</span>,
+            <span class="hljs-attr">"checksumType"</span>: <span class="hljs-string">"CKSUM"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>,
+            <span class="hljs-attr">"url_path"</span>: <span class="hljs-string">""</span>
+        },
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-private"</span>,
+            <span class="hljs-attr">"path"</span>: <span class="hljs-string">"/TEST_B/Cumulus/MODIS/DATA"</span>,
+            <span class="hljs-attr">"checksumValue"</span>: <span class="hljs-number">121318124</span>,
+            <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-private/MOD11A1.A2017137.h20v17.006.2017138085755.hdf.met"</span>,
+            <span class="hljs-attr">"fileSize"</span>: <span class="hljs-number">22559</span>,
+            <span class="hljs-attr">"checksumType"</span>: <span class="hljs-string">"CKSUM"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755.hdf.met"</span>,
+            <span class="hljs-attr">"url_path"</span>: <span class="hljs-string">""</span>
+        },
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-private"</span>,
+            <span class="hljs-attr">"path"</span>: <span class="hljs-string">"/TEST_B/Cumulus/MODIS/DATA"</span>,
+            <span class="hljs-attr">"checksumValue"</span>: <span class="hljs-number">2188150664</span>,
+            <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-private/BROWSE.MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>,
+            <span class="hljs-attr">"fileSize"</span>: <span class="hljs-number">18118</span>,
+            <span class="hljs-attr">"checksumType"</span>: <span class="hljs-string">"CKSUM"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"BROWSE.MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>,
+            <span class="hljs-attr">"url_path"</span>: <span class="hljs-string">""</span>
+        },
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-protected"</span>,
+            <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-protected/MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755.hdf"</span>
+        },
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-public"</span>,
+            <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-public/MOD11A1.A2017137.h20v17.006.2017138085755_2.jpg"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755_2.jpg"</span>
+        },
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-protected"</span>,
+            <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755"</span>,
+            <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-protected/MOD11A1.A2017137.h20v17.006.2017138085755.cmr.xml"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755.cmr.xml"</span>
+        },
+        {
+            <span class="hljs-attr">"bucket"</span>: <span class="hljs-string">"cumulus-devseed-public"</span>,
+            <span class="hljs-attr">"filename"</span>: <span class="hljs-string">"s3://cumulus-devseed-public/MOD11A1.A2017137.h20v17.006.2017138085755_1.jpg"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755_1.jpg"</span>
+        }
+    ],
+    <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1513020455831</span>,
+    <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513020462156</span>,
+    <span class="hljs-attr">"published"</span>: <span class="hljs-string">"https://cmr.uat.earthdata.nasa.gov/search/granules.json?concept_id=G1220753758-CUMULUS"</span>,
+    <span class="hljs-attr">"duration"</span>: <span class="hljs-number">6.325</span>,
+    <span class="hljs-attr">"cmrLink"</span>: <span class="hljs-string">"https://cmr.uat.earthdata.nasa.gov/search/granules.json?concept_id=G1220753758-CUMULUS"</span>,
+    <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755"</span>
+}</pre>
+</div></div><div data-title="Reingest granule" class="keyline-top section contain clearfix " data-reactid="126"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="127"><h2 id="reingest-granule">Reingest granule</h2>
+<p>Reingest a granule. This causes the granule to re-download to Cumulus from source, and begin processing from scratch.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="128"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/v1/granules/<span class="strong">{granuleId}</span></div>
+    </div>
+<h4 id="example-request-16">Example request</h4>
+<pre class='hljs'>$ curl --request PUT https://example.com/v1/granules/MOD11A1.A2017137.h20v17.006.2017138085755 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span> --data <span class="hljs-string">'{"action": "reingest"}'</span></pre>
+<h4 id="example-response-16">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755"</span>,
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"reingest"</span>,
+    <span class="hljs-attr">"status"</span>: <span class="hljs-string">"SUCCESS"</span>
+}</pre>
+</div></div><div data-title="Apply workflow to granule" class="keyline-top section contain clearfix " data-reactid="129"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="130"><h2 id="apply-workflow-to-granule">Apply workflow to granule</h2>
+<p>Apply the named workflow to the granule. Workflow input will be built from template and provided entire Cumulus granule record as payload.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="131"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/v1/granules/<span class="strong">{granuleid}</span></div>
+    </div>
+<h4 id="example-request-17">Example request</h4>
+<pre class='hljs'>$ curl --request PUT https://example.com/v1/granules/MOD11A1.A2017137.h19v16.006.2017138085750 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span> --data <span class="hljs-string">'{ "action": "applyWorkflow", "workflow": "inPlaceWorkflow" }'</span></pre>
+<h4 id="example-response-17">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"MOD11A1.A2017137.h20v17.006.2017138085755"</span>,
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"applyWorkflow inPlaceWorkflow"</span>,
+    <span class="hljs-attr">"status"</span>: <span class="hljs-string">"SUCCESS"</span>
+}</pre>
+</div></div><div data-title="Move a granule" class="keyline-top section contain clearfix " data-reactid="132"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="133"><h2 id="move-a-granule">Move a granule</h2>
+<p>Move a granule from one location on S3 to another. Individual files are moved to specific locations by using a regex that matches their filenames.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="134"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/v1/granules/<span class="strong">{granuleId}</span></div>
+    </div>
+<h4 id="example-request-18">Example request</h4>
+<pre class='hljs'>$ curl --request PUT https://example.com/v1/granules/MOD11A1.A2017137.h19v16.006.2017138085750 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span> --data <span class="hljs-string">'{ "action": "move", "destinations": [{ "regex": ".*.hdf$", "bucket": "s3-bucket", "filepath": "new/filepath/" }]}'</span></pre>
+<h4 id="example-response-18">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"MOD11A1.A2017137.h19v16.006.2017138085750"</span>,
+  <span class="hljs-attr">"action"</span>: <span class="hljs-string">"move"</span>,
+  <span class="hljs-attr">"status"</span>: <span class="hljs-string">"SUCCESS"</span>
+}</pre>
+</div></div><div data-title="Remove granule from CMR" class="keyline-top section contain clearfix " data-reactid="135"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="136"><h2 id="remove-granule-from-cmr">Remove granule from CMR</h2>
+<p>Remove a Cumulus granule from CMR.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="137"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/v1/granules/<span class="strong">{granuleId}</span></div>
+    </div>
+<h4 id="example-request-19">Example request</h4>
+<pre class='hljs'>$ curl --request PUT https://example.com/v1/granules/MOD11A1.A2017137.h19v16.006.2017138085750 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span> --data <span class="hljs-string">'{"action": "removeFromCmr"}'</span></pre>
+<h4 id="example-response-19">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"MOD11A1.A2017137.h19v16.006.2017138085750"</span>,
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"removeFromCmr"</span>,
+    <span class="hljs-attr">"status"</span>: <span class="hljs-string">"SUCCESS"</span>
+}</pre>
+</div></div><div data-title="Delete granule" class="keyline-top section contain clearfix " data-reactid="138"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="139"><h2 id="delete-granule">Delete granule</h2>
+<p>Delete a granule from Cumulus. It must <em>already</em> be removed from CMR.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="140"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>DELETE</div>
+      <div class='pad0 code small endpoint-url'>/v1/granules/<span class="strong">{granuleId}</span></div>
+    </div>
+<h4 id="example-request-20">Example request</h4>
+<pre class='hljs'>$ curl --request DELETE https://example.com/v1/granules/1A0000-2016121001_002_001 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-20">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"detail"</span>: <span class="hljs-string">"Record deleted"</span>
+}</pre>
+</div></div><div data-title="List PDRs" class="keyline-top section contain clearfix " data-reactid="141"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="142"><h2 id="list-pdrs">List PDRs</h2>
+<p>List PDRs in the Cumulus system.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="143"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/pdrs</div>
+    </div>
+<h4 id="example-request-21">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/pdrs --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-21">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"meta"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+        <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"lpdaac-cumulus"</span>,
+        <span class="hljs-attr">"table"</span>: <span class="hljs-string">"pdr"</span>,
+        <span class="hljs-attr">"limit"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"page"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"count"</span>: <span class="hljs-number">8</span>
+    },
+    <span class="hljs-attr">"results"</span>: [
+        {
+            <span class="hljs-attr">"pdrName"</span>: <span class="hljs-string">"7970bff5-128a-489f-b43c-de4ad7834ce5.PDR"</span>,
+            <span class="hljs-attr">"collectionId"</span>: <span class="hljs-string">"MOD11A1___006"</span>,
+            <span class="hljs-attr">"status"</span>: <span class="hljs-string">"failed"</span>,
+            <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"LP_TS2_DataPool"</span>,
+            <span class="hljs-attr">"progress"</span>: <span class="hljs-number">0</span>,
+            <span class="hljs-attr">"execution"</span>: <span class="hljs-string">"https://console.aws.amazon.com/states/home?region=us-east-1#/executions/details/arn:aws:states:us-east-1:433612427488:execution:LpdaacCumulusIngestGranuleStateMachine-N3CLGBXRPAT9:6ef0c52f83c549db58b3a1e50"</span>,
+            <span class="hljs-attr">"PANSent"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">"PANmessage"</span>: <span class="hljs-string">"N/A"</span>,
+            <span class="hljs-attr">"stats"</span>: {
+                <span class="hljs-attr">"processing"</span>: <span class="hljs-number">0</span>,
+                <span class="hljs-attr">"completed"</span>: <span class="hljs-number">0</span>,
+                <span class="hljs-attr">"failed"</span>: <span class="hljs-number">0</span>,
+                <span class="hljs-attr">"total"</span>: <span class="hljs-number">0</span>
+            },
+            <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1514305411204</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1514305424036</span>,
+            <span class="hljs-attr">"duration"</span>: <span class="hljs-number">12.832</span>
+        }
+    ]
+}</pre>
+</div></div><div data-title="Retrieve PDR" class="keyline-top section contain clearfix " data-reactid="144"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="145"><h2 id="retrieve-pdr">Retrieve PDR</h2>
+<p>Retrieve a single PDR.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="146"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/pdrs/<span class="strong">{pdrName}</span></div>
+    </div>
+<h4 id="example-request-22">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/pdrs/7970bff5-128a-489f-b43c-de4ad7834ce5.PDR --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-22">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"pdrName"</span>: <span class="hljs-string">"7970bff5-128a-489f-b43c-de4ad7834ce5.PDR"</span>,
+    <span class="hljs-attr">"collectionId"</span>: <span class="hljs-string">"MOD11A1___006"</span>,
+    <span class="hljs-attr">"status"</span>: <span class="hljs-string">"failed"</span>,
+    <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"LP_TS2_DataPool"</span>,
+    <span class="hljs-attr">"progress"</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">"execution"</span>: <span class="hljs-string">"https://console.aws.amazon.com/states/home?region=us-east-1#/executions/details/arn:aws:states:us-east-1:433612427488:execution:LpdaacCumulusIngestGranuleStateMachine-N3CLGBXRPAT9:6ef0c52f83c549db58b3a1e50"</span>,
+    <span class="hljs-attr">"PANSent"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">"PANmessage"</span>: <span class="hljs-string">"N/A"</span>,
+    <span class="hljs-attr">"stats"</span>: {
+        <span class="hljs-attr">"processing"</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">"completed"</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">"failed"</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">"total"</span>: <span class="hljs-number">0</span>
+    },
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1514305411204</span>,
+    <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1514305424036</span>,
+    <span class="hljs-attr">"duration"</span>: <span class="hljs-number">12.832</span>,
+    <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"7970bff5-128a-489f-b43c-de4ad7834ce5.PDR"</span>
+}</pre>
+</div></div><div data-title="Delete PDR" class="keyline-top section contain clearfix " data-reactid="147"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="148"><h2 id="delete-pdr">Delete PDR</h2>
+<p>Delete a PDR from Cumulus. Its granules will remain, and the PDR may be re-discovered and re-ingested/re-processed from scratch in the future.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="149"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>DELETE</div>
+      <div class='pad0 code small endpoint-url'>/v1/pdrs/<span class="strong">{pdrName}</span></div>
+    </div>
+<h4 id="example-request-23">Example request</h4>
+<pre class='hljs'>$ curl --request DELETE https://example.com/v1/pdrs/good_25grans.PDR --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-23">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Record deleted"</span>
+}</pre>
+</div></div><div data-title="List rules" class="keyline-top section contain clearfix " data-reactid="150"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="151"><h2 id="list-rules">List rules</h2>
+<p>List rules in the Cumulus system.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="152"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/rules</div>
+    </div>
+<h4 id="example-request-24">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/rules --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-24">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"meta"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+        <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"lpdaac-cumulus"</span>,
+        <span class="hljs-attr">"table"</span>: <span class="hljs-string">"rule"</span>,
+        <span class="hljs-attr">"limit"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"page"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"count"</span>: <span class="hljs-number">7</span>
+    },
+    <span class="hljs-attr">"results"</span>: [
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"repeat"</span>,
+            <span class="hljs-attr">"workflow"</span>: <span class="hljs-string">"DiscoverPdrs"</span>,
+            <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"local"</span>,
+            <span class="hljs-attr">"collection"</span>: {
+                <span class="hljs-attr">"name"</span>: <span class="hljs-string">"AST_L1A"</span>,
+                <span class="hljs-attr">"version"</span>: <span class="hljs-string">"003"</span>
+            },
+            <span class="hljs-attr">"rule"</span>: {
+                <span class="hljs-attr">"type"</span>: <span class="hljs-string">"scheduled"</span>,
+                <span class="hljs-attr">"value"</span>: <span class="hljs-string">"rate(5 minutes)"</span>
+            },
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1511232462534</span>,
+            <span class="hljs-attr">"state"</span>: <span class="hljs-string">"DISABLED"</span>
+        }
+    ]
+}</pre>
+</div></div><div data-title="Retrieve rule" class="keyline-top section contain clearfix " data-reactid="153"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="154"><h2 id="retrieve-rule">Retrieve rule</h2>
+<p>Retrieve a single rule.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="155"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/rules/<span class="strong">{name}</span></div>
+    </div>
+<h4 id="example-request-25">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/rules/repeat --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-25">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"workflow"</span>: <span class="hljs-string">"DiscoverPdrs"</span>,
+    <span class="hljs-attr">"collection"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"AST_L1A"</span>,
+        <span class="hljs-attr">"version"</span>: <span class="hljs-string">"003"</span>
+    },
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1511232462507</span>,
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1510903518741</span>,
+    <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"local"</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"repeat"</span>,
+    <span class="hljs-attr">"rule"</span>: {
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"scheduled"</span>,
+        <span class="hljs-attr">"value"</span>: <span class="hljs-string">"rate(5 minutes)"</span>
+    },
+    <span class="hljs-attr">"state"</span>: <span class="hljs-string">"DISABLED"</span>
+}</pre>
+</div></div><div data-title="Create rule" class="keyline-top section contain clearfix " data-reactid="156"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="157"><h2 id="create-rule">Create rule</h2>
+<p>Create a rule.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="158"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/v1/rules</div>
+    </div>
+<h4 id="example-request-26">Example request</h4>
+<pre class='hljs'>$ curl --request POST https://example.com/v1/rules --header <span class="hljs-string">'Authorization: Bearer ReplaceWithToken'</span> --data <span class="hljs-string">'{
+    "workflow": "DiscoverPdrs",
+    "collection": {
+        "name": "AST_L1A",
+        "version": "003"
+    },
+    "updatedAt": 1511232462507,
+    "createdAt": 1510903518741,
+    "provider": "local",
+    "name": "repeat_test",
+    "rule": {
+        "type": "scheduled",
+        "value": "rate(5 minutes)"
+    },
+    "state": "DISABLED"
+}'</span></pre>
+<h4 id="example-response-26">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Record saved"</span>,
+    <span class="hljs-attr">"record"</span>: {
+        <span class="hljs-attr">"workflow"</span>: <span class="hljs-string">"DiscoverPdrs"</span>,
+        <span class="hljs-attr">"collection"</span>: {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"AST_L1A"</span>,
+            <span class="hljs-attr">"version"</span>: <span class="hljs-string">"003"</span>
+        },
+        <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1515966212264</span>,
+        <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1510903518741</span>,
+        <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"local"</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"repeat_test"</span>,
+        <span class="hljs-attr">"rule"</span>: {
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"scheduled"</span>,
+            <span class="hljs-attr">"value"</span>: <span class="hljs-string">"rate(5 minutes)"</span>
+        },
+        <span class="hljs-attr">"state"</span>: <span class="hljs-string">"DISABLED"</span>,
+        <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1515966212713</span>
+    }
+}</pre>
+</div></div><div data-title="Update rule" class="keyline-top section contain clearfix " data-reactid="159"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="160"><h2 id="update-rule">Update rule</h2>
+<p>Update rules for a collection. Can accept the whole rule object, or just a subset of fields, the ones that are being updated. Returns a mapping of the updated properties.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="161"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>PUT</div>
+      <div class='pad0 code small endpoint-url'>/v1/rules/<span class="strong">{name}</span></div>
+    </div>
+<h4 id="example-request-27">Example request</h4>
+<pre class='hljs'>$ curl --request PUT https://example.com/v1/rules/repeat_test --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span> --data <span class="hljs-string">'{"state": "ENABLED"}'</span></pre>
+<h4 id="example-response-27">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"workflow"</span>: <span class="hljs-string">"DiscoverPdrs"</span>,
+    <span class="hljs-attr">"collection"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"AST_L1A"</span>,
+        <span class="hljs-attr">"version"</span>: <span class="hljs-string">"003"</span>
+    },
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1521755265130</span>,
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1510903518741</span>,
+    <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"local"</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"repeat_test"</span>,
+    <span class="hljs-attr">"rule"</span>: {
+        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"scheduled"</span>,
+        <span class="hljs-attr">"value"</span>: <span class="hljs-string">"rate(5 minutes)"</span>
+    },
+    <span class="hljs-attr">"state"</span>: <span class="hljs-string">"ENABLED"</span>
+}</pre>
+</div></div><div data-title="Delete rule" class="keyline-top section contain clearfix " data-reactid="162"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="163"><h2 id="delete-rule">Delete rule</h2>
+<p>Delete a rule from Cumulus.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="164"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>DELETE</div>
+      <div class='pad0 code small endpoint-url'>/v1/rules/<span class="strong">{name}</span></div>
+    </div>
+<h4 id="example-request-28">Example request</h4>
+<pre class='hljs'>$ curl --request DELETE https://example.com/v1/rules/repeat_test --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-28">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Record deleted"</span>
+}</pre>
+</div></div><div data-title="Summary" class="keyline-top section contain clearfix " data-reactid="165"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="166"><h2 id="summary">Summary</h2>
+<p>Retrieve a summary of various metrics for all of the Cumulus engine.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="167"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/stats</div>
+    </div>
+<h4 id="example-request-29">Example Request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/stats --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-success-response">Example success response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"errors"</span>: {
+        <span class="hljs-attr">"dateFrom"</span>: <span class="hljs-string">"1970-01-18T12:36:59+00:00"</span>,
+        <span class="hljs-attr">"dateTo"</span>: <span class="hljs-string">"2017-12-26T04:38:15+00:00"</span>,
+        <span class="hljs-attr">"value"</span>: <span class="hljs-number">2</span>,
+        <span class="hljs-attr">"aggregation"</span>: <span class="hljs-string">"count"</span>,
+        <span class="hljs-attr">"unit"</span>: <span class="hljs-string">"error"</span>
+    },
+    <span class="hljs-attr">"collections"</span>: {
+        <span class="hljs-attr">"dateFrom"</span>: <span class="hljs-string">"1970-01-01T12:00:00+00:00"</span>,
+        <span class="hljs-attr">"dateTo"</span>: <span class="hljs-string">"2017-12-26T04:38:15+00:00"</span>,
+        <span class="hljs-attr">"value"</span>: <span class="hljs-number">3</span>,
+        <span class="hljs-attr">"aggregation"</span>: <span class="hljs-string">"count"</span>,
+        <span class="hljs-attr">"unit"</span>: <span class="hljs-string">"collection"</span>
+    },
+    <span class="hljs-attr">"processingTime"</span>: {
+        <span class="hljs-attr">"dateFrom"</span>: <span class="hljs-string">"1970-01-18T12:36:59+00:00"</span>,
+        <span class="hljs-attr">"dateTo"</span>: <span class="hljs-string">"2017-12-26T04:38:15+00:00"</span>,
+        <span class="hljs-attr">"value"</span>: <span class="hljs-literal">null</span>,
+        <span class="hljs-attr">"aggregation"</span>: <span class="hljs-string">"average"</span>,
+        <span class="hljs-attr">"unit"</span>: <span class="hljs-string">"second"</span>
+    },
+    <span class="hljs-attr">"granules"</span>: {
+        <span class="hljs-attr">"dateFrom"</span>: <span class="hljs-string">"1970-01-18T12:36:59+00:00"</span>,
+        <span class="hljs-attr">"dateTo"</span>: <span class="hljs-string">"2017-12-26T04:38:15+00:00"</span>,
+        <span class="hljs-attr">"value"</span>: <span class="hljs-number">8</span>,
+        <span class="hljs-attr">"aggregation"</span>: <span class="hljs-string">"count"</span>,
+        <span class="hljs-attr">"unit"</span>: <span class="hljs-string">"granule"</span>
+    }
+}</pre>
+</div></div><div data-title="Histogram" class="keyline-top section contain clearfix " data-reactid="168"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="169"><h2 id="histogram">Histogram</h2>
+<p>Retrieve metrics over various time periods, to produce a histogram for dashboards.</p>
+<p>Accepts the following query parameters, <em>in addition to</em> the regular filter parameters:</p>
+<table>
+<thead>
+<tr>
+<th>query string parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type={providers|collections|granules|pdrs|logs}</code></td>
+<td>type of Cumulus record to query</td>
+</tr>
+<tr>
+<td><code>field={fieldName}</code></td>
+<td>which field to query; default is <code>timestamp</code></td>
+</tr>
+<tr>
+<td><code>interval={day|week|month|year}</code></td>
+<td>"X-axis size" in time of each bar; default is <code>day</code></td>
+</tr>
+<tr>
+<td><code>format={ElasticSearch date format}</code></td>
+<td>display format for the datetime in the response, accepts any <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html">ElasticSearch date format</a>; default is <code>yyyy-MM-dd</code></td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="170"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/stats/histogram</div>
+    </div>
+<h4 id="example-request-30">Example request</h4>
+<pre class='hljs'>curl <span class="hljs-string">'https://example.com/v1/stats/histogram?interval=day&amp;status=completed&amp;type=granules&amp;updatedAt__from=2017-04-05T12:59:35-04:00'</span> --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-29">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"meta"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+    <span class="hljs-attr">"count"</span>: <span class="hljs-number">29</span>,
+    <span class="hljs-attr">"criteria"</span>: {
+      <span class="hljs-attr">"field"</span>: <span class="hljs-string">"timestamp"</span>,
+      <span class="hljs-attr">"interval"</span>: <span class="hljs-string">"day"</span>,
+      <span class="hljs-attr">"format"</span>: <span class="hljs-string">"yyyy-MM-dd"</span>
+    }
+  },
+  <span class="hljs-attr">"histogram"</span>: [
+    {
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"2017-04-06"</span>,
+      <span class="hljs-attr">"count"</span>: <span class="hljs-number">3</span>
+    },
+    {
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"2017-04-07"</span>,
+      <span class="hljs-attr">"count"</span>: <span class="hljs-number">1</span>
+    },
+    {
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"2017-04-08"</span>,
+      <span class="hljs-attr">"count"</span>: <span class="hljs-number">0</span>
+    },
+    {
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"2017-04-09"</span>,
+      <span class="hljs-attr">"count"</span>: <span class="hljs-number">0</span>
+    },
+    {
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"2017-04-10"</span>,
+      <span class="hljs-attr">"count"</span>: <span class="hljs-number">0</span>
+    },
+    {
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"2017-04-11"</span>,
+      <span class="hljs-attr">"count"</span>: <span class="hljs-number">24</span>
+    },
+    {
+      <span class="hljs-attr">"date"</span>: <span class="hljs-string">"2017-04-12"</span>,
+      <span class="hljs-attr">"count"</span>: <span class="hljs-number">1</span>
+    }
+  ]
+}</pre>
+</div></div><div data-title="Count" class="keyline-top section contain clearfix " data-reactid="171"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="172"><h2 id="count">Count</h2>
+<p>Count the value frequencies for a given field, for a given type of record in Cumulus. Requires the following query parameters, and may include the regular filter parameters:</p>
+<table>
+<thead>
+<tr>
+<th>query string parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type={providers|collections|granules|pdrs|logs}</code></td>
+<td>type of Cumulus record to query</td>
+</tr>
+<tr>
+<td><code>field={fieldName}</code></td>
+<td>which field to count frequencies for; no default</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="173"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/stats/aggregate</div>
+    </div>
+<h4 id="example-request-31">Example request</h4>
+<pre class='hljs'>curl <span class="hljs-string">'https://example.com/v1/stats/aggregate?field=status&amp;type=pdrs'</span> --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-30">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"meta"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+    <span class="hljs-attr">"count"</span>: <span class="hljs-number">52</span>,
+    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"status.keyword"</span>
+  },
+  <span class="hljs-attr">"count"</span>: [
+    {
+      <span class="hljs-attr">"key"</span>: <span class="hljs-string">"failed"</span>,
+      <span class="hljs-attr">"count"</span>: <span class="hljs-number">43</span>
+    },
+    {
+      <span class="hljs-attr">"key"</span>: <span class="hljs-string">"completed"</span>,
+      <span class="hljs-attr">"count"</span>: <span class="hljs-number">5</span>
+    },
+    {
+      <span class="hljs-attr">"key"</span>: <span class="hljs-string">"parsed"</span>,
+      <span class="hljs-attr">"count"</span>: <span class="hljs-number">3</span>
+    }
+  ]
+}</pre>
+</div></div><div data-title="Average" class="keyline-top section contain clearfix " data-reactid="174"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="175"><h2 id="average">Average</h2>
+<p>Calculate the average value and other summary statistics for a given numeric field. Requires the following query parameters, and may include the regular filter parameters:</p>
+<table>
+<thead>
+<tr>
+<th>query string parameter</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type={providers|collections|granules|pdrs|logs}</code></td>
+<td>type of Cumulus record to query</td>
+</tr>
+<tr>
+<td><code>field={fieldName}</code></td>
+<td>which field to count frequencies for, must be numeric; no default</td>
+</tr>
+</tbody>
+</table>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="176"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/stats/average</div>
+    </div>
+<h4 id="example-request-32">Example request</h4>
+<pre class='hljs'>curl <span class="hljs-string">'https://example.com/v1/stats/average?field=duration&amp;type=granules'</span> --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-31">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"meta"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+    <span class="hljs-attr">"count"</span>: <span class="hljs-number">34</span>,
+    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"duration"</span>
+  },
+  <span class="hljs-attr">"stats"</span>: {
+    <span class="hljs-attr">"count"</span>: <span class="hljs-number">34</span>,
+    <span class="hljs-attr">"min"</span>: <span class="hljs-number">1.7050000429153442</span>,
+    <span class="hljs-attr">"max"</span>: <span class="hljs-number">868.7949829101562</span>,
+    <span class="hljs-attr">"avg"</span>: <span class="hljs-number">40.43520551919937</span>,
+    <span class="hljs-attr">"sum"</span>: <span class="hljs-number">1374.7969876527786</span>,
+    <span class="hljs-attr">"sum_of_squares"</span>: <span class="hljs-number">771227.9831936971</span>,
+    <span class="hljs-attr">"variance"</span>: <span class="hljs-number">21048.170130905317</span>,
+    <span class="hljs-attr">"std_deviation"</span>: <span class="hljs-number">145.0798750030662</span>,
+    <span class="hljs-attr">"std_deviation_bounds"</span>: {
+      <span class="hljs-attr">"upper"</span>: <span class="hljs-number">330.5949555253318</span>,
+      <span class="hljs-attr">"lower"</span>: <span class="hljs-number">-249.72454448693304</span>
+    }
+  }
+}</pre>
+</div></div><div data-title="List logs" class="keyline-top section contain clearfix " data-reactid="177"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="178"><h2 id="list-logs">List logs</h2>
+<p>List processing logs from the Cumulus engine. A log's <code>level</code> field may be either <code>info</code> or <code>error</code>.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="179"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/logs</div>
+    </div>
+<h4 id="example-request-33">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/logs?<span class="hljs-built_in">limit</span>=5 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-32">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"meta"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+        <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"lpdaac-cumulus"</span>,
+        <span class="hljs-attr">"table"</span>: <span class="hljs-string">"logs"</span>,
+        <span class="hljs-attr">"limit"</span>: <span class="hljs-number">5</span>,
+        <span class="hljs-attr">"page"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"count"</span>: <span class="hljs-number">750</span>
+    },
+    <span class="hljs-attr">"results"</span>: [
+        {
+            <span class="hljs-attr">"pid"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"hostname"</span>: <span class="hljs-string">"ip-10-29-4-186"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus"</span>,
+            <span class="hljs-attr">"level"</span>: <span class="hljs-number">50</span>,
+            <span class="hljs-attr">"msg"</span>: <span class="hljs-string">"https://ba008ffc.ngrok.io/ not found"</span>,
+            <span class="hljs-attr">"file"</span>: <span class="hljs-string">"discover-pdrs/index.js"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"Error"</span>,
+            <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"HostNotFound: https://ba008ffc.ngrok.io/ not found\n    at discover.discover.then.catch.e (/var/task/index.js:9006:22)\n    at process._tickDomainCallback (internal/process/next_tick.js:135:7)"</span>,
+            <span class="hljs-attr">"message"</span>: <span class="hljs-string">"https://ba008ffc.ngrok.io/ not found"</span>,
+            <span class="hljs-attr">"v"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513881407867</span>
+        },
+        {
+            <span class="hljs-attr">"pid"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"hostname"</span>: <span class="hljs-string">"ip-10-29-4-186"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus"</span>,
+            <span class="hljs-attr">"level"</span>: <span class="hljs-number">50</span>,
+            <span class="hljs-attr">"file"</span>: <span class="hljs-string">"discover-pdrs/index.js"</span>,
+            <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Received a 404 error from undefined. Check your endpoint!"</span>,
+            <span class="hljs-attr">"details"</span>: {
+                <span class="hljs-attr">"host"</span>: <span class="hljs-string">"ba008ffc.ngrok.io"</span>,
+                <span class="hljs-attr">"path"</span>: <span class="hljs-string">"/"</span>,
+                <span class="hljs-attr">"port"</span>: <span class="hljs-string">""</span>,
+                <span class="hljs-attr">"protocol"</span>: <span class="hljs-string">"https"</span>,
+                <span class="hljs-attr">"uriPath"</span>: <span class="hljs-string">"/"</span>,
+                <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://ba008ffc.ngrok.io/"</span>,
+                <span class="hljs-attr">"depth"</span>: <span class="hljs-number">1</span>,
+                <span class="hljs-attr">"fetched"</span>: <span class="hljs-literal">true</span>,
+                <span class="hljs-attr">"status"</span>: <span class="hljs-string">"notfound"</span>,
+                <span class="hljs-attr">"stateData"</span>: {
+                    <span class="hljs-attr">"requestLatency"</span>: <span class="hljs-number">66</span>,
+                    <span class="hljs-attr">"requestTime"</span>: <span class="hljs-number">66</span>,
+                    <span class="hljs-attr">"contentLength"</span>: <span class="hljs-number">34</span>,
+                    <span class="hljs-attr">"contentType"</span>: <span class="hljs-string">"text/plain"</span>,
+                    <span class="hljs-attr">"code"</span>: <span class="hljs-number">404</span>,
+                    <span class="hljs-attr">"headers"</span>: {
+                        <span class="hljs-attr">"content-length"</span>: <span class="hljs-string">"34"</span>,
+                        <span class="hljs-attr">"connection"</span>: <span class="hljs-string">"close"</span>,
+                        <span class="hljs-attr">"content-type"</span>: <span class="hljs-string">"text/plain"</span>
+                    }
+                },
+                <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>
+            },
+            <span class="hljs-attr">"v"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513881407867</span>
+        },
+        {
+            <span class="hljs-attr">"pid"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"hostname"</span>: <span class="hljs-string">"ip-10-29-4-186"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus"</span>,
+            <span class="hljs-attr">"level"</span>: <span class="hljs-number">50</span>,
+            <span class="hljs-attr">"msg"</span>: <span class="hljs-string">"Cannot read property 'provider_path' of undefined"</span>,
+            <span class="hljs-attr">"file"</span>: <span class="hljs-string">"discover-pdrs/index.js"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"Error"</span>,
+            <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"TypeError: Cannot read property 'provider_path' of undefined\n    at HttpDiscover.Discover (/var/task/index.js:10098:33)\n    at HttpDiscover._class (/var/task/index.js:96368:255)\n    at new HttpDiscover (/var/task/index.js:10342:241)\n    at handler (/var/task/index.js:8968:23)\n    at Promise (/var/task/cumulus-sled/index.js:82:5)\n    at invokeHandler (/var/task/cumulus-sled/index.js:72:10)\n    at then.then.then (/var/task/cumulus-sled/index.js:112:14)\n    at process._tickDomainCallback (internal/process/next_tick.js:135:7)"</span>,
+            <span class="hljs-attr">"v"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513881031694</span>
+        },
+        {
+            <span class="hljs-attr">"pid"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"hostname"</span>: <span class="hljs-string">"ip-10-29-4-186"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus"</span>,
+            <span class="hljs-attr">"level"</span>: <span class="hljs-number">50</span>,
+            <span class="hljs-attr">"msg"</span>: <span class="hljs-string">"Provider info not provided"</span>,
+            <span class="hljs-attr">"file"</span>: <span class="hljs-string">"discover-pdrs/index.js"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"Error"</span>,
+            <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"ProviderNotFound: Provider info not provided\n    at handler (/var/task/index.js:8962:20)\n    at Promise (/var/task/cumulus-sled/index.js:82:5)\n    at invokeHandler (/var/task/cumulus-sled/index.js:72:10)\n    at then.then.then (/var/task/cumulus-sled/index.js:112:14)\n    at process._tickDomainCallback (internal/process/next_tick.js:135:7)"</span>,
+            <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Provider info not provided"</span>,
+            <span class="hljs-attr">"v"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513879654040</span>
+        },
+        {
+            <span class="hljs-attr">"pid"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"hostname"</span>: <span class="hljs-string">"ip-10-29-4-186"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus"</span>,
+            <span class="hljs-attr">"level"</span>: <span class="hljs-number">50</span>,
+            <span class="hljs-attr">"msg"</span>: <span class="hljs-string">"Provider info not provided"</span>,
+            <span class="hljs-attr">"file"</span>: <span class="hljs-string">"discover-pdrs/index.js"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"Error"</span>,
+            <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"ProviderNotFound: Provider info not provided\n    at handler (/var/task/index.js:8962:20)\n    at Promise (/var/task/cumulus-sled/index.js:82:5)\n    at invokeHandler (/var/task/cumulus-sled/index.js:72:10)\n    at then.then.then (/var/task/cumulus-sled/index.js:112:14)\n    at process._tickDomainCallback (internal/process/next_tick.js:135:7)"</span>,
+            <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Provider info not provided"</span>,
+            <span class="hljs-attr">"v"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1513879435010</span>
+        }
+    ]
+}</pre>
+<h4 id="example-request-for-errors">Example request for errors</h4>
+<pre class='hljs'>$ curl https://example.com/v1/logs?level=50 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-for-errors">Example response for errors</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"meta"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+        <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"lpdaac-cumulus"</span>,
+        <span class="hljs-attr">"table"</span>: <span class="hljs-string">"logs"</span>,
+        <span class="hljs-attr">"limit"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"page"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"count"</span>: <span class="hljs-number">181</span>
+    },
+    <span class="hljs-attr">"results"</span>: [
+        {
+            <span class="hljs-attr">"level"</span>: <span class="hljs-number">50</span>,
+            <span class="hljs-attr">"msg"</span>: <span class="hljs-string">"Unexpected HTTP status code: 404"</span>,
+            <span class="hljs-attr">"pid"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"hostname"</span>: <span class="hljs-string">"ip-10-26-125-174"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus"</span>,
+            <span class="hljs-attr">"file"</span>: <span class="hljs-string">"sync-granule/index.js"</span>,
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"Error"</span>,
+            <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"Error: Unexpected HTTP status code: 404\n    at ClientRequest.&lt;anonymous&gt; (/var/task/sync-granule/index.js:125136:29)\n    at ClientRequest.g (events.js:292:16)\n    at emitOne (events.js:96:13)\n    at ClientRequest.emit (events.js:188:7)\n    at HTTPParser.parserOnIncomingClient (_http_client.js:473:21)\n    at HTTPParser.parserOnHeadersComplete (_http_common.js:99:23)\n    at TLSSocket.socketOnData (_http_client.js:362:20)\n    at emitOne (events.js:96:13)\n    at TLSSocket.emit (events.js:188:7)\n    at readableAddChunk (_stream_readable.js:176:18)"</span>,
+            <span class="hljs-attr">"code"</span>: <span class="hljs-number">404</span>,
+            <span class="hljs-attr">"v"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1515446810226</span>
+        }
+    ]
+}</pre>
+</div></div><div data-title="Retrieve Logs" class="keyline-top section contain clearfix " data-reactid="180"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="181"><h2 id="retrieve-logs">Retrieve Logs</h2>
+<p>Retrieve all logs from a specific execution.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="182"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/logs/<span class="strong">{executionName}</span></div>
+    </div>
+<h4 id="example-request-34">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/logs/93e5e049-89aa-47e5-900d-0eec87327260?<span class="hljs-built_in">limit</span>=5 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-33">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"meta"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+        <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"test-src-integration"</span>,
+        <span class="hljs-attr">"table"</span>: <span class="hljs-string">"logs"</span>,
+        <span class="hljs-attr">"limit"</span>: <span class="hljs-number">5</span>,
+        <span class="hljs-attr">"page"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"count"</span>: <span class="hljs-number">10</span>
+    },
+    <span class="hljs-attr">"results"</span>: [
+        {
+            <span class="hljs-attr">"level"</span>: <span class="hljs-number">30</span>,
+            <span class="hljs-attr">"executions"</span>: <span class="hljs-string">"93e5e049-89aa-47e5-900d-0eec87327260"</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-string">"2018-08-15T19:23:57.752Z"</span>,
+            <span class="hljs-attr">"sender"</span>: <span class="hljs-string">"test-src-integration-PostToCmr"</span>,
+            <span class="hljs-attr">"version"</span>: <span class="hljs-string">"$LATEST"</span>,
+            <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Published MOD09GQ.A8009365.7JQhni.006.6594428626875 to the CMR. conceptId: G1223210348-CUMULUS"</span>,
+            <span class="hljs-attr">"RequestId"</span>: <span class="hljs-string">"05712fb1-5593-4640-b5a3-a99db41d8003"</span>
+        },
+        {
+            <span class="hljs-attr">"level"</span>: <span class="hljs-number">30</span>,
+            <span class="hljs-attr">"executions"</span>: <span class="hljs-string">"93e5e049-89aa-47e5-900d-0eec87327260"</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-string">"2018-08-15T19:23:42.054Z"</span>,
+            <span class="hljs-attr">"sender"</span>: <span class="hljs-string">"test-src-integration-SyncGranuleNoVpc"</span>,
+            <span class="hljs-attr">"version"</span>: <span class="hljs-string">"$LATEST"</span>,
+            <span class="hljs-attr">"message"</span>: <span class="hljs-string">"uploaded s3://cumulus-test-sandbox-internal/file-staging/test-src-integration/MOD09GQ___006/MOD09GQ.A8009365.7JQhni.006.6594428626875.hdf"</span>,
+            <span class="hljs-attr">"RequestId"</span>: <span class="hljs-string">"a20698f3-a9a1-4e64-acbf-09ef77827fbc"</span>
+        },
+        {
+            <span class="hljs-attr">"level"</span>: <span class="hljs-number">30</span>,
+            <span class="hljs-attr">"executions"</span>: <span class="hljs-string">"93e5e049-89aa-47e5-900d-0eec87327260"</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-string">"2018-08-15T19:23:41.913Z"</span>,
+            <span class="hljs-attr">"sender"</span>: <span class="hljs-string">"test-src-integration-SyncGranuleNoVpc"</span>,
+            <span class="hljs-attr">"version"</span>: <span class="hljs-string">"$LATEST"</span>,
+            <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Finishing downloading s3://cumulus-test-sandbox-internal/cumulus-test-data/pdrs/MOD09GQ.A8009365.7JQhni.006.6594428626875.hdf"</span>,
+            <span class="hljs-attr">"RequestId"</span>: <span class="hljs-string">"a20698f3-a9a1-4e64-acbf-09ef77827fbc"</span>
+        },
+        {
+            <span class="hljs-attr">"level"</span>: <span class="hljs-number">30</span>,
+            <span class="hljs-attr">"executions"</span>: <span class="hljs-string">"93e5e049-89aa-47e5-900d-0eec87327260"</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-string">"2018-08-15T19:23:41.888Z"</span>,
+            <span class="hljs-attr">"sender"</span>: <span class="hljs-string">"test-src-integration-SyncGranuleNoVpc"</span>,
+            <span class="hljs-attr">"version"</span>: <span class="hljs-string">"$LATEST"</span>,
+            <span class="hljs-attr">"message"</span>: <span class="hljs-string">"uploaded s3://cumulus-test-sandbox-internal/file-staging/test-src-integration/MOD09GQ___006/MOD09GQ.A8009365.7JQhni.006.6594428626875_ndvi.jpg"</span>,
+            <span class="hljs-attr">"RequestId"</span>: <span class="hljs-string">"a20698f3-a9a1-4e64-acbf-09ef77827fbc"</span>
+        },
+        {
+            <span class="hljs-attr">"level"</span>: <span class="hljs-number">30</span>,
+            <span class="hljs-attr">"executions"</span>: <span class="hljs-string">"93e5e049-89aa-47e5-900d-0eec87327260"</span>,
+            <span class="hljs-attr">"timestamp"</span>: <span class="hljs-string">"2018-08-15T19:23:41.886Z"</span>,
+            <span class="hljs-attr">"sender"</span>: <span class="hljs-string">"test-src-integration-SyncGranuleNoVpc"</span>,
+            <span class="hljs-attr">"version"</span>: <span class="hljs-string">"$LATEST"</span>,
+            <span class="hljs-attr">"message"</span>: <span class="hljs-string">"uploaded s3://cumulus-test-sandbox-internal/file-staging/test-src-integration/MOD09GQ___006/MOD09GQ.A8009365.7JQhni.006.6594428626875.hdf.met"</span>,
+            <span class="hljs-attr">"RequestId"</span>: <span class="hljs-string">"a20698f3-a9a1-4e64-acbf-09ef77827fbc"</span>
+        }
+    ]
+}</pre>
+</div></div><div data-title="List executions" class="keyline-top section contain clearfix " data-reactid="183"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="184"><h2 id="list-executions">List executions</h2>
+<p>List executions.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="185"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/executions</div>
+    </div>
+<h4 id="example-request-35">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/executions?<span class="hljs-built_in">limit</span>=3 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-34">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"meta"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+    <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"test-src-integration"</span>,
+    <span class="hljs-attr">"table"</span>: <span class="hljs-string">"execution"</span>,
+    <span class="hljs-attr">"limit"</span>: <span class="hljs-number">3</span>,
+    <span class="hljs-attr">"page"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">"count"</span>: <span class="hljs-number">447</span>
+  },
+  <span class="hljs-attr">"results"</span>: [
+    {
+      <span class="hljs-attr">"arn"</span>: <span class="hljs-string">"arn:aws:states:us-east-1:596205514284:execution:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl2sgv:08aa40f8-7d91-41b4-986e-d12ce495aec5"</span>,
+      <span class="hljs-attr">"duration"</span>: <span class="hljs-number">1.693</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1534443719571</span>,
+      <span class="hljs-attr">"execution"</span>: <span class="hljs-string">"https://console.aws.amazon.com/states/home?region=us-east-1#/executions/details/arn:aws:states:us-east-1:596205514284:execution:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl2sgv:08aa40f8-7d91-41b4-986e-d12ce495aec5"</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"08aa40f8-7d91-41b4-986e-d12ce495aec5"</span>,
+      <span class="hljs-attr">"error"</span>: {},
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"IngestGranule"</span>,
+      <span class="hljs-attr">"collectionId"</span>: <span class="hljs-string">"MOD09GQ___006"</span>,
+      <span class="hljs-attr">"tasks"</span>: {},
+      <span class="hljs-attr">"status"</span>: <span class="hljs-string">"running"</span>,
+      <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1534443721559</span>,
+      <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1534443721265</span>
+    },
+    {
+      <span class="hljs-attr">"arn"</span>: <span class="hljs-string">"arn:aws:states:us-east-1:596205514284:execution:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl2sgv:bee18782-e987-4bd4-b726-41669e489e2f"</span>,
+      <span class="hljs-attr">"duration"</span>: <span class="hljs-number">1.718</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1534443706867</span>,
+      <span class="hljs-attr">"execution"</span>: <span class="hljs-string">"https://console.aws.amazon.com/states/home?region=us-east-1#/executions/details/arn:aws:states:us-east-1:596205514284:execution:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl2sgv:bee18782-e987-4bd4-b726-41669e489e2f"</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"bee18782-e987-4bd4-b726-41669e489e2f"</span>,
+      <span class="hljs-attr">"error"</span>: {},
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"IngestGranule"</span>,
+      <span class="hljs-attr">"collectionId"</span>: <span class="hljs-string">"MOD09GQ___006"</span>,
+      <span class="hljs-attr">"tasks"</span>: {},
+      <span class="hljs-attr">"status"</span>: <span class="hljs-string">"running"</span>,
+      <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1534443709043</span>,
+      <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1534443708585</span>
+    },
+    {
+      <span class="hljs-attr">"arn"</span>: <span class="hljs-string">"arn:aws:states:us-east-1:596205514284:execution:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl2sgv:55d62b27-50cd-4cc1-81f9-e425cf10532e"</span>,
+      <span class="hljs-attr">"duration"</span>: <span class="hljs-number">29.397</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1534443668185</span>,
+      <span class="hljs-attr">"execution"</span>: <span class="hljs-string">"https://console.aws.amazon.com/states/home?region=us-east-1#/executions/details/arn:aws:states:us-east-1:596205514284:execution:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl2sgv:55d62b27-50cd-4cc1-81f9-e425cf10532e"</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"55d62b27-50cd-4cc1-81f9-e425cf10532e"</span>,
+      <span class="hljs-attr">"error"</span>: {
+        <span class="hljs-attr">"Cause"</span>: <span class="hljs-string">"None"</span>,
+        <span class="hljs-attr">"Error"</span>: <span class="hljs-string">"Unknown Error"</span>
+      },
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"IngestGranule"</span>,
+      <span class="hljs-attr">"collectionId"</span>: <span class="hljs-string">"MOD09GQ___006"</span>,
+      <span class="hljs-attr">"tasks"</span>: {},
+      <span class="hljs-attr">"status"</span>: <span class="hljs-string">"completed"</span>,
+      <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1534443698322</span>,
+      <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1534443697582</span>
+    }
+  ]
+}</pre>
+</div></div><div data-title="Retrieve Execution" class="keyline-top section contain clearfix " data-reactid="186"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="187"><h2 id="retrieve-execution">Retrieve Execution</h2>
+<p>Retrieve details for a specific execution.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="188"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/executions/<span class="strong">{executionName}</span></div>
+    </div>
+<h4 id="example-request-36">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/executions/cff1266e-ef36-664f-a649-3a4d26bd1735 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-35">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"execution"</span>: <span class="hljs-string">"https://console.aws.amazon.com/states/home?region=us-east-1#/executions/details/arn:aws:states:us-east-1:596205514284:execution:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl2sgv:cff1266e-ef36-664f-a649-3a4d26bd1735"</span>,
+    <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-number">1534441782302</span>,
+    <span class="hljs-attr">"status"</span>: <span class="hljs-string">"completed"</span>,
+    <span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">1534441782302</span>,
+    <span class="hljs-attr">"tasks"</span>:
+    {
+        <span class="hljs-attr">"MoveGranuleStep"</span>:
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"test-src-integration-MoveGranules"</span>,
+            <span class="hljs-attr">"arn"</span>: <span class="hljs-string">"arn:aws:lambda:us-east-1:596205514284:function:test-src-integration-MoveGranules"</span>,
+            <span class="hljs-attr">"version"</span>: <span class="hljs-string">"$LATEST"</span>
+        },
+        <span class="hljs-attr">"ProcessingStep"</span>:
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"test-src-integration-FakeProcessing"</span>,
+            <span class="hljs-attr">"arn"</span>: <span class="hljs-string">"arn:aws:lambda:us-east-1:596205514284:function:test-src-integration-FakeProcessing"</span>,
+            <span class="hljs-attr">"version"</span>: <span class="hljs-string">"$LATEST"</span>
+        },
+        <span class="hljs-attr">"StopStatus"</span>:
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"test-src-integration-SfSnsReport"</span>,
+            <span class="hljs-attr">"arn"</span>: <span class="hljs-string">"arn:aws:lambda:us-east-1:596205514284:function:test-src-integration-SfSnsReport"</span>,
+            <span class="hljs-attr">"version"</span>: <span class="hljs-string">"$LATEST"</span>
+        }
+    },
+    <span class="hljs-attr">"createdAt"</span>: <span class="hljs-number">1534441752026</span>,
+    <span class="hljs-attr">"duration"</span>: <span class="hljs-number">30.276</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cff1266e-ef36-664f-a649-3a4d26bd1735"</span>,
+    <span class="hljs-attr">"arn"</span>: <span class="hljs-string">"arn:aws:states:us-east-1:596205514284:execution:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl2sgv:cff1266e-ef36-664f-a649-3a4d26bd1735"</span>,
+    <span class="hljs-attr">"collectionId"</span>: <span class="hljs-string">"MOD09GQ___006"</span>,
+    <span class="hljs-attr">"error"</span>:
+    {
+        <span class="hljs-attr">"Error"</span>: <span class="hljs-string">"Unknown Error"</span>,
+        <span class="hljs-attr">"Cause"</span>: <span class="hljs-string">"None"</span>
+    },
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"IngestGranule"</span>
+}</pre>
+</div></div><div data-title="Retrieve Execution Status" class="keyline-top section contain clearfix " data-reactid="189"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="190"><h2 id="retrieve-execution-status">Retrieve Execution Status</h2>
+<p>Retrieve details and status of a specific execution. This also return details of the state machine.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="191"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/executions/status/<span class="strong">{executionArn}</span></div>
+    </div>
+<h4 id="example-request-37">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/executions/status/arn:aws:states:us-east-1:596205514284:execution:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl6sgv:d0a6584b-bea6-476e-a745-c1feb2ad00b2 --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-36">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"execution"</span>:
+    {
+        <span class="hljs-attr">"executionArn"</span>: <span class="hljs-string">"arn:aws:states:us-east-1:596205514284:execution:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl4sgv:d0a6584b-bea6-476e-a745-c1feb2ad00b2"</span>,
+        <span class="hljs-attr">"stateMachineArn"</span>: <span class="hljs-string">"arn:aws:states:us-east-1:596205514284:stateMachine:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl4sgv"</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"d0a6584b-bea6-476e-a745-c1feb2ad00b2"</span>,
+        <span class="hljs-attr">"status"</span>: <span class="hljs-string">"SUCCEEDED"</span>,
+        <span class="hljs-attr">"startDate"</span>: <span class="hljs-string">"2018-08-16T18:39:32.209Z"</span>,
+        <span class="hljs-attr">"stopDate"</span>: <span class="hljs-string">"2018-08-16T18:39:59.089Z"</span>,
+        <span class="hljs-attr">"input"</span>:
+        {
+            <span class="hljs-attr">"foo"</span>: <span class="hljs-string">"input"</span>
+        },
+        <span class="hljs-attr">"output"</span>:
+        {
+            <span class="hljs-attr">"bar"</span>: <span class="hljs-string">"output"</span>
+        }
+    },
+    <span class="hljs-attr">"executionHistory"</span>:
+    {
+        <span class="hljs-attr">"events"</span>:
+        [
+            {
+                <span class="hljs-attr">"taskName"</span>: <span class="hljs-string">"foo bar 1"</span>
+            },
+            {
+                <span class="hljs-attr">"taskName"</span>: <span class="hljs-string">"foo bar 2"</span>
+            }
+        ]
+    },
+    <span class="hljs-attr">"stateMachine"</span>:
+    {
+        <span class="hljs-attr">"stateMachineArn"</span>: <span class="hljs-string">"arn:aws:states:us-east-1:596205514284:stateMachine:TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl4sgv"</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"TestSrcIntegrationIngestGranuleStateMachine-UhCSmszl4sgv"</span>,
+        <span class="hljs-attr">"status"</span>: <span class="hljs-string">"ACTIVE"</span>,
+        <span class="hljs-attr">"definition"</span>:
+        {
+            <span class="hljs-attr">"Comment"</span>: <span class="hljs-string">"Ingest Granule"</span>,
+            <span class="hljs-attr">"StartAt"</span>: <span class="hljs-string">"First State"</span>,
+            <span class="hljs-attr">"States"</span>:
+            {
+                <span class="hljs-attr">"First State"</span>: {}
+            }
+        },
+        <span class="hljs-attr">"roleArn"</span>: <span class="hljs-string">"arn:aws:iam::596205514284:role/test-src-integration-steprole"</span>,
+        <span class="hljs-attr">"creationDate"</span>: <span class="hljs-string">"2018-06-11T16:08:17.533Z"</span>
+    }
+}</pre>
+</div></div><div data-title="List workflows" class="keyline-top section contain clearfix " data-reactid="192"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="193"><h2 id="list-workflows">List workflows</h2>
+<p>List workflows in the Cumulus system.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="194"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/workflows</div>
+    </div>
+<h4 id="example-request-38">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/workflows --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-37">Example response</h4>
+<pre class='hljs'>[
+    {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"TestLambdaVersionWorkflow"</span>,
+        <span class="hljs-attr">"template"</span>: <span class="hljs-string">"s3://cumulus-test-sandbox-internal/cumulus/workflows/TestLambdaVersionWorkflow.json"</span>,
+        <span class="hljs-attr">"definition"</span>: {
+            <span class="hljs-attr">"Comment"</span>: <span class="hljs-string">"Tests Lambda update after redeploy"</span>,
+            <span class="hljs-attr">"StartAt"</span>: <span class="hljs-string">"StartStatus"</span>,
+            <span class="hljs-attr">"States"</span>: {
+                <span class="hljs-attr">"StartStatus"</span>: {
+                    <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Task"</span>,
+                    <span class="hljs-attr">"Resource"</span>: <span class="hljs-string">"${SfSnsReportLambdaAliasOutput}"</span>,
+                    <span class="hljs-attr">"Next"</span>: <span class="hljs-string">"WaitForDeployment"</span>
+                },
+                <span class="hljs-attr">"WaitForDeployment"</span>: {
+                    <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Task"</span>,
+                    <span class="hljs-attr">"Resource"</span>: <span class="hljs-string">"${WaitForDeploymentLambdaAliasOutput}"</span>,
+                    <span class="hljs-attr">"Next"</span>: <span class="hljs-string">"VersionUpTest"</span>
+                },
+                <span class="hljs-attr">"VersionUpTest"</span>: {
+                    <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Task"</span>,
+                    <span class="hljs-attr">"Resource"</span>: <span class="hljs-string">"${VersionUpTestLambdaAliasOutput}"</span>,
+                    <span class="hljs-attr">"Next"</span>: <span class="hljs-string">"StopStatus"</span>
+                },
+                <span class="hljs-attr">"StopStatus"</span>: {
+                    <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Task"</span>,
+                    <span class="hljs-attr">"Resource"</span>: <span class="hljs-string">"${SfSnsReportLambdaAliasOutput}"</span>,
+                    <span class="hljs-attr">"Catch"</span>: [
+                        {
+                            <span class="hljs-attr">"ErrorEquals"</span>: [
+                                <span class="hljs-string">"States.ALL"</span>
+                            ],
+                            <span class="hljs-attr">"Next"</span>: <span class="hljs-string">"WorkflowFailed"</span>
+                        }
+                    ],
+                    <span class="hljs-attr">"End"</span>: <span class="hljs-literal">true</span>
+                },
+                <span class="hljs-attr">"WorkflowFailed"</span>: {
+                    <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Fail"</span>,
+                    <span class="hljs-attr">"Cause"</span>: <span class="hljs-string">"Workflow failed"</span>
+                }
+            }
+        }
+    },
+    {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"HelloWorldWorkflow"</span>,
+        <span class="hljs-attr">"template"</span>: <span class="hljs-string">"s3://cumulus-test-sandbox-internal/cumulus/workflows/HelloWorldWorkflow.json"</span>,
+        <span class="hljs-attr">"definition"</span>: {
+            <span class="hljs-attr">"Comment"</span>: <span class="hljs-string">"Returns Hello World"</span>,
+            <span class="hljs-attr">"StartAt"</span>: <span class="hljs-string">"StartStatus"</span>,
+            <span class="hljs-attr">"States"</span>: {
+                <span class="hljs-attr">"StartStatus"</span>: {
+                    <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Task"</span>,
+                    <span class="hljs-attr">"Resource"</span>: <span class="hljs-string">"${SfSnsReportLambdaAliasOutput}"</span>,
+                    <span class="hljs-attr">"Next"</span>: <span class="hljs-string">"HelloWorld"</span>
+                },
+                <span class="hljs-attr">"HelloWorld"</span>: {
+                    <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Task"</span>,
+                    <span class="hljs-attr">"Resource"</span>: <span class="hljs-string">"${HelloWorldLambdaAliasOutput}"</span>,
+                    <span class="hljs-attr">"Next"</span>: <span class="hljs-string">"StopStatus"</span>
+                },
+                <span class="hljs-attr">"StopStatus"</span>: {
+                    <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Task"</span>,
+                    <span class="hljs-attr">"Resource"</span>: <span class="hljs-string">"${SfSnsReportLambdaAliasOutput}"</span>,
+                    <span class="hljs-attr">"Catch"</span>: [
+                        {
+                            <span class="hljs-attr">"ErrorEquals"</span>: [
+                                <span class="hljs-string">"States.ALL"</span>
+                            ],
+                            <span class="hljs-attr">"Next"</span>: <span class="hljs-string">"WorkflowFailed"</span>
+                        }
+                    ],
+                    <span class="hljs-attr">"End"</span>: <span class="hljs-literal">true</span>
+                },
+                <span class="hljs-attr">"WorkflowFailed"</span>: {
+                    <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Fail"</span>,
+                    <span class="hljs-attr">"Cause"</span>: <span class="hljs-string">"Workflow failed"</span>
+                }
+            }
+        }
+    }
+]</pre>
+</div></div><div data-title="Retrieve workflow" class="keyline-top section contain clearfix " data-reactid="195"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="196"><h2 id="retrieve-workflow">Retrieve workflow</h2>
+<p>Retrieve a single workflow.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="197"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/workflow/<span class="strong">{name}</span></div>
+    </div>
+<h4 id="example-request-39">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/workflows/HelloWorldWorkflow --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-38">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"HelloWorldWorkflow"</span>,
+    <span class="hljs-attr">"template"</span>: <span class="hljs-string">"s3://cumulus-test-sandbox-internal/cumulus/workflows/HelloWorldWorkflow.json"</span>,
+    <span class="hljs-attr">"definition"</span>: {
+        <span class="hljs-attr">"Comment"</span>: <span class="hljs-string">"Returns Hello World"</span>,
+        <span class="hljs-attr">"StartAt"</span>: <span class="hljs-string">"StartStatus"</span>,
+        <span class="hljs-attr">"States"</span>: {
+            <span class="hljs-attr">"StartStatus"</span>: {
+                <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Task"</span>,
+                <span class="hljs-attr">"Resource"</span>: <span class="hljs-string">"${SfSnsReportLambdaAliasOutput}"</span>,
+                <span class="hljs-attr">"Next"</span>: <span class="hljs-string">"HelloWorld"</span>
+            },
+            <span class="hljs-attr">"HelloWorld"</span>: {
+                <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Task"</span>,
+                <span class="hljs-attr">"Resource"</span>: <span class="hljs-string">"${HelloWorldLambdaAliasOutput}"</span>,
+                <span class="hljs-attr">"Next"</span>: <span class="hljs-string">"StopStatus"</span>
+            },
+            <span class="hljs-attr">"StopStatus"</span>: {
+                <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Task"</span>,
+                <span class="hljs-attr">"Resource"</span>: <span class="hljs-string">"${SfSnsReportLambdaAliasOutput}"</span>,
+                <span class="hljs-attr">"Catch"</span>: [
+                    {
+                        <span class="hljs-attr">"ErrorEquals"</span>: [
+                            <span class="hljs-string">"States.ALL"</span>
+                        ],
+                        <span class="hljs-attr">"Next"</span>: <span class="hljs-string">"WorkflowFailed"</span>
+                    }
+                ],
+                <span class="hljs-attr">"End"</span>: <span class="hljs-literal">true</span>
+            },
+            <span class="hljs-attr">"WorkflowFailed"</span>: {
+                <span class="hljs-attr">"Type"</span>: <span class="hljs-string">"Fail"</span>,
+                <span class="hljs-attr">"Cause"</span>: <span class="hljs-string">"Workflow failed"</span>
+            }
+        }
+    }
+}</pre>
+</div></div><div data-title="Retrieve schema" class="keyline-top section contain clearfix " data-reactid="198"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="199"><h2 id="retrieve-schema">Retrieve schema</h2>
+<p>Retrieve the data schema for a particular type of Cumulus record.</p>
+<p>This schema describes the expected format of a record's JSON object when retrieving from Cumulus, as well as a summary of what each field may contain. The schema response can also be used to determine which fields are required when creating a new record using the API.</p>
+<p>Supported <code>type</code> values are <code>provider</code>, <code>collection</code>, <code>granule</code>, and <code>pdr</code>.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="200"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/schemas/<span class="strong">{type}</span></div>
+    </div>
+<h4 id="example-request-40">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/schemas/provider --header <span class="hljs-string">'Authorization: Bearer ReplceWithTheToken'</span></pre>
+<h4 id="example-response-39">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span>,
+  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Provider Object"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Keep the information about each ingest endpoint"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+  <span class="hljs-attr">"properties"</span>: {
+    <span class="hljs-attr">"name"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Title"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A title for the provider record"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"pattern"</span>: <span class="hljs-string">"^([\\w\\d_\\-]*)$"</span>
+    },
+    <span class="hljs-attr">"providerName"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Provider, e.g. MODAPS"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Name of the SIP"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+    },
+    <span class="hljs-attr">"protocol"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Protocol"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"enum"</span>: [
+        <span class="hljs-string">"http"</span>,
+        <span class="hljs-string">"ftp"</span>
+      ],
+      <span class="hljs-attr">"default"</span>: <span class="hljs-string">"http"</span>
+    },
+    <span class="hljs-attr">"host"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Host"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+    },
+    <span class="hljs-attr">"path"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Path to the PDR/files folder"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+    },
+    <span class="hljs-attr">"config"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Configuration"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+      <span class="hljs-attr">"properties"</span>: {
+        <span class="hljs-attr">"username"</span>: {
+          <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+        },
+        <span class="hljs-attr">"password"</span>: {
+          <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+        },
+        <span class="hljs-attr">"port"</span>: {
+          <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+        }
+      }
+    },
+    <span class="hljs-attr">"status"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Status"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"enum"</span>: [
+        <span class="hljs-string">"ingesting"</span>,
+        <span class="hljs-string">"stopped"</span>,
+        <span class="hljs-string">"failed"</span>
+      ],
+      <span class="hljs-attr">"default"</span>: <span class="hljs-string">"stopped"</span>,
+      <span class="hljs-attr">"readonly"</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-attr">"isActive"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Is Active?"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"boolean"</span>,
+      <span class="hljs-attr">"default"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"readonly"</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-attr">"regex"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"object"</span>,
+      <span class="hljs-attr">"patternProperties"</span>: {
+        <span class="hljs-attr">"^([\\S]*)$"</span>: {
+          <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>
+        }
+      },
+      <span class="hljs-attr">"readonly"</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-attr">"lastTimeIngestedAt"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Last Time Ingest from the Provider"</span>,
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"number"</span>,
+      <span class="hljs-attr">"readonly"</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-attr">"createdAt"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"number"</span>,
+      <span class="hljs-attr">"readonly"</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-attr">"updatedAt"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"number"</span>,
+      <span class="hljs-attr">"readonly"</span>: <span class="hljs-literal">true</span>
+    }
+  },
+  <span class="hljs-attr">"required"</span>: [
+    <span class="hljs-string">"name"</span>,
+    <span class="hljs-string">"providerName"</span>,
+    <span class="hljs-string">"protocol"</span>,
+    <span class="hljs-string">"host"</span>,
+    <span class="hljs-string">"path"</span>,
+    <span class="hljs-string">"isActive"</span>,
+    <span class="hljs-string">"status"</span>,
+    <span class="hljs-string">"createdAt"</span>,
+    <span class="hljs-string">"updatedAt"</span>
+  ]
+}</pre>
+</div></div><div data-title="List reconciliation reports" class="keyline-top section contain clearfix " data-reactid="201"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="202"><h2 id="list-reconciliation-reports">List reconciliation reports</h2>
+<p>List reconciliation reports in the Cumulus system.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="203"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/reconciliationReports</div>
+    </div>
+<h4 id="example-request-41">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/reconciliationReports --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-40">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"meta"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"cumulus-api"</span>,
+        <span class="hljs-attr">"stack"</span>: <span class="hljs-string">"lpdaac-cumulus"</span>
+    },
+    <span class="hljs-attr">"results"</span>: [
+        <span class="hljs-string">"report-2018-04-20T20:58:38.883Z.json"</span>,
+        <span class="hljs-string">"report-2018-05-20T20:58:38.883Z.json"</span>,
+        <span class="hljs-string">"report-2018-06-20T20:58:38.883Z.json"</span>
+    ]
+}</pre>
+</div></div><div data-title="Retrieve reconciliation report" class="keyline-top section contain clearfix " data-reactid="204"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="205"><h2 id="retrieve-reconciliation-report">Retrieve reconciliation report</h2>
+<p>Retrieve a single reconciliation report.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="206"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>GET</div>
+      <div class='pad0 code small endpoint-url'>/v1/reconciliationReports/<span class="strong">{name}</span></div>
+    </div>
+<h4 id="example-request-42">Example request</h4>
+<pre class='hljs'>$ curl https://example.com/v1/reconciliationReports/report-2018-06-20T20:58:38.883Z.json --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-41">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"reportStartTime"</span>: <span class="hljs-string">"2018-06-20T20:58:38.883Z"</span>,
+    <span class="hljs-attr">"reportEndTime"</span>: <span class="hljs-string">"2018-06-20T20:58:40.943Z"</span>,
+    <span class="hljs-attr">"status"</span>: <span class="hljs-string">"SUCCESS"</span>,
+    <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-attr">"okFileCount"</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">"onlyInS3"</span>: [
+        <span class="hljs-string">"s3://cumulus-test-sandbox-protected/MOD09GQ.A2016358.h13v04.006.2016360104606.cmr.xml"</span>,
+        <span class="hljs-string">"s3://cumulus-test-sandbox-private/BROWSE.MYD13Q1.A2017297.h19v10.006.2017313221201.hdf"</span>
+    ],
+    <span class="hljs-attr">"onlyInDynamoDb"</span>: [
+            {
+              <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"s3://cumulus-test-sandbox-protected/MOD09GQ.A2016358.h13v04.006.2016360104606.hdf"</span>,
+              <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"MOD09GQ.A2016358.h13v04.006.2016360104606"</span>
+            },
+            {
+              <span class="hljs-attr">"uri"</span>: <span class="hljs-string">"s3://cumulus-test-sandbox-private/MYD13Q1.A2017297.h19v10.006.2017313221303.hdf.met"</span>,
+              <span class="hljs-attr">"granuleId"</span>: <span class="hljs-string">"MYD13Q1.A2017297.h19v10.006.2017313221303"</span>
+            }
+    ]
+}</pre>
+</div></div><div data-title="Create reconciliation report" class="keyline-top section contain clearfix " data-reactid="207"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="208"><h2 id="create-reconciliation-report">Create reconciliation report</h2>
+<p>Create a new reconciliation report.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="209"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>POST</div>
+      <div class='pad0 code small endpoint-url'>/v1/reconciliationReports</div>
+    </div>
+<h4 id="example-request-43">Example request</h4>
+<pre class='hljs'>$ curl --request POST https://example.com/v1/reconciliationReports --header <span class="hljs-string">'Authorization: Bearer ReplaceWithToken'</span></pre>
+<h4 id="example-response-42">Example response</h4>
+<pre class='hljs'>{
+    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Report is being generated"</span>,
+    <span class="hljs-attr">"status"</span>: <span class="hljs-number">202</span>
+}</pre>
+</div></div><div data-title="Delete reconciliation report" class="keyline-top section contain clearfix " data-reactid="210"><div class="space-bottom8 col6 pad2x prose clip" data-reactid="211"><h2 id="delete-reconciliation-report">Delete reconciliation report</h2>
+<p>Delete a reconciliation report from Cumulus.</p>
+</div><div class="space-bottom4 col6 pad2 prose clip fill-light space-top5" data-reactid="212"><div class='endpoint dark fill-dark round '>
+      <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>DELETE</div>
+      <div class='pad0 code small endpoint-url'>/v1/reconciliationReports/<span class="strong">{name}</span></div>
+    </div>
+<h4 id="example-request-44">Example request</h4>
+<pre class='hljs'>$ curl --request DELETE https://example.com/v1/reconciliationReports/report-2018-06-20T20:58:38.883Z.json --header <span class="hljs-string">'Authorization: Bearer ReplaceWithTheToken'</span></pre>
+<h4 id="example-response-43">Example response</h4>
+<pre class='hljs'>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Report deleted"</span>
+}</pre>
+</div></div></div></div></div><div class="fixed-top space-left16" data-reactid="213"><div class="events fill-light bottom-shadow pad1 col6 pin-topright  " data-reactid="214"><div class="space-right1 small quiet inline" data-reactid="215">Show examples in:</div><div class="rounded-toggle inline short" data-reactid="216"><a class="strong active" data-reactid="217">cURL</a><a class="strong " data-reactid="218">Python</a><a class="strong " data-reactid="219">JS</a></div><div class="fr pad0" data-reactid="220"><a title="Display as 1 column" style="cursor:pointer;" class="icon quiet caret-left pad0 fill-darken0 round" data-reactid="221"></a></div></div></div><div class="fill-dark dark bottom-shadow fixed-top pad0 width16" data-reactid="222"><a href="/" class="active space-top1 space-left1 pin-topleft icon round dark pad0 fill-red" data-reactid="223"></a><div class="strong small pad0
+          
+          space-left4 line-height15" data-reactid="224">Cumulus API</div></div></div></div><!--STOP-->
+    <script src='bundle.js'></script>
+  </body>
+</html>
